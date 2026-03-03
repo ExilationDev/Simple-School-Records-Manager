@@ -42,5 +42,14 @@ public class AppWindow extends JFrame {
             menu.add(item);
         }
         menuBar.add(menu);
+        refreshWindow();
+    }
+    
+    /**
+     * Refreshes the frame after any changes. Internal function.
+     */
+    void refreshWindow() {
+        revalidate();
+        repaint();
     }
 }

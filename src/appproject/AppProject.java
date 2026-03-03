@@ -13,5 +13,6 @@ public class AppProject {
     public static void main(String[] args) {
         AppWindow window = new AppWindow("Application", 100, 100, 500, 500);
         window.setUpMenu("Test", new ArrayList<>(Arrays.asList(new JMenuItem("TestItem"))));
+        window.setUpMenu("Test1", new ArrayList<>(Arrays.asList(new JMenuItem("TestItem"))));
     }
 }
