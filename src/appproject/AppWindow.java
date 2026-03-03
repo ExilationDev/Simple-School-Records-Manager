@@ -4,11 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import java.awt.Container;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AppWindow extends JFrame {
     
     JMenuBar menuBar;
+    List<WindowContainer> containers;
     
     /**
      * Sets up an application window. AppWindow's constructor.
@@ -43,6 +46,30 @@ public class AppWindow extends JFrame {
         }
         menuBar.add(menu);
         refreshWindow();
+    }
+    
+    /**
+     * Sets up the container.
+     * @param c Selected container to be set up.
+     */
+    public void setUpContentPane(Container c) {
+        throw new UnsupportedOperationException("This method isn't supported yet.");
+    }
+    
+    /**
+     * Shows the existing container as main pane. Will disable previous pane.
+     * @param c Selected container to be shown.
+     */
+    public void showContentPane(Container c) {
+        throw new UnsupportedOperationException("This method isn't supported yet.");
+    }
+    
+    /**
+     * Shows the existing container as main pane. Will disable previous pane.
+     * @param index Selected index with a container to be shown.
+     */
+    public void showContentPane(int index) {
+        throw new UnsupportedOperationException("This method isn't supported yet.");
     }
     
     /**
