@@ -49,14 +49,6 @@ public class AppWindow extends JFrame {
     }
     
     /**
-     * Sets up the container.
-     * @param c Selected container to be set up.
-     */
-    public void setUpContentPane(Container c) {
-        throw new UnsupportedOperationException("This method isn't supported yet.");
-    }
-    
-    /**
      * Shows the existing container as main pane. Will disable previous pane.
      * @param c Selected container to be shown.
      */
