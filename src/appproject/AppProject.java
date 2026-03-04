@@ -2,8 +2,10 @@ package appproject;
 
 import javax.swing.*;
 import javax.swing.event.*;
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
+
 import appproject.containers.*;
 
 public class AppProject {
@@ -15,18 +17,26 @@ public class AppProject {
      * contain an array of command arguments.
      */
     public static void main(String[] args) {
-        AppWindow window = new AppWindow("Application", 100, 100, 500, 500);
+        AppWindow window = new AppWindow("Application", true);
 
         // Menu Bar Setup
-        window.setUpMenu("Test", new ArrayList<>(Arrays.asList(new JMenuItem("TestItem"))));
+        window.setUpMenu("Test", new ArrayList<>(List.of(new JMenuItem("TestItem"))));
 
-        window.setUpMenu("Test1", new ArrayList<>(Arrays.asList(
+        window.setUpMenu("Test1", new ArrayList<>(List.of(
                 new JMenuItem("TestItem1"),
-                new JMenuItem("TestItem2"),
-                new JMenuItem("TestItem3")
+                window.setUpMenuInMenu("TestItem2", new ArrayList<>(List.of(
+                        new JMenuItem("TestItem2TestItem"),
+                        new JMenuItem("TestItem2TestItem1"),
+                        new JMenuItem("TestItem2TestItem2")
+                ))),
+                new JMenuItem("Spawn Dialog")
         )));
+        window.configureMenuItem(
+                window.getJMenuBar().getMenu(1).getItem(2),
+                (var e) -> window.showContentPaneAsDialog(new MainContainer(), "Spawn Dialog", 200, 200, true)
+        );
 
-        window.setUpMenu("Button", new ArrayList<>(Arrays.asList(new JMenuItem("Send Message"))));
+        window.setUpMenu("Button", new ArrayList<>(List.of(new JMenuItem("Send Message"))));
         window.configureMenuItem(
                 window.getJMenuBar().getMenu(2).getItem(0),
                 (var e) -> JOptionPane.showMessageDialog(
@@ -37,7 +47,7 @@ public class AppProject {
                 )
         );
 
-        window.setUpMenu("App", new ArrayList<>(Arrays.asList(new JMenuItem("Exit"))));
+        window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Exit"))));
         window.configureMenuItem(
                 window.getJMenuBar().getMenu(3).getItem(0),
                 (var e) -> {
