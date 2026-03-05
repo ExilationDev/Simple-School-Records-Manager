@@ -19,9 +19,8 @@ import java.util.ArrayList;
  * @see javax.swing.JFrame
  * @author ExilationDev (Kristian Vinz Lizardo)
  */
+@SuppressWarnings("unused")
 public class AppWindow extends JFrame {
-
-    JMenuBar menuBar;
 
     /**
      * <h5>AppWindow - INITIALIZATION</h5>
@@ -38,7 +37,7 @@ public class AppWindow extends JFrame {
         setTitle(title);
         setResizable(resizable);
 
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
         setBounds(x, y, width, height);
@@ -59,7 +58,7 @@ public class AppWindow extends JFrame {
         setTitle(title);
         setResizable(resizable);
 
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
         int desktopWidth = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
@@ -83,7 +82,7 @@ public class AppWindow extends JFrame {
     public void setUpMenu(String label, ArrayList<JMenuItem> items) {
         JMenu menu = new JMenu(label);
         if (items != null) items.forEach((var item) -> menu.add(item));
-        menuBar.add(menu);
+        getJMenuBar().add(menu);
         refreshWindow();
     }
 
@@ -123,7 +122,9 @@ public class AppWindow extends JFrame {
     /**
      * Shows the existing container as main pane. Will disable previous pane.<br>
      *
+     * @see javax.swing.JPanel
      * @param c Selected container to be shown.
+     * @return The shown JPanel.
      */
     public JPanel showContentPane(JPanel c) {
         setContentPane(c);
@@ -131,6 +132,17 @@ public class AppWindow extends JFrame {
         return (JPanel)getContentPane();
     }
 
+    /**
+     * Shows the existing container as a separate window or dialog.<br>
+     *
+     * @see javax.swing.JDialog
+     * @param c Selected container to be shown.
+     * @param title The title of the dialog.
+     * @param width The width of the dialog.
+     * @param height The height of the dialog.
+     * @param modal The mode of the dialog.
+     * @return The shown JDialog with the container.
+     */
     public JDialog showContentPaneAsDialog(JPanel c, String title, int width, int height, boolean modal) {
         JDialog dialog = new JDialog(this, title, modal);
         dialog.setContentPane(c);

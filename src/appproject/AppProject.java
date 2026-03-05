@@ -10,13 +10,15 @@ import appproject.containers.*;
 
 public class AppProject {
 
+    // This is where you initialize your AppWindow and Containers.
+    // This is also where you initialize menus for your AppWindow.
     /**
      * The main method of the project.
      *
      * @param args if code is executed on a terminal command-line, this will
      * contain an array of command arguments.
      */
-    public static void main(String[] args) {
+    static void main(String[] args) {
         AppWindow window = new AppWindow("Application", true);
 
         // Menu Bar Setup
