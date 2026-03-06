@@ -1,4 +1,4 @@
-package appproject;
+package appproject.lib;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -7,6 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.event.MenuListener;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,8 +21,7 @@ import java.util.ArrayList;
  * @author ExilationDev (Kristian Vinz Lizardo)
  */
 @SuppressWarnings("unused")
-public class AppWindow extends JFrame {
-
+public class AppWindow extends JFrame implements ContentUpdateListener {
     /**
      * <h5>AppWindow - INITIALIZATION</h5>
      * Sets up an application window.<br>
@@ -43,6 +43,7 @@ public class AppWindow extends JFrame {
         setBounds(x, y, width, height);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setFont(new Font("Roboto", Font.PLAIN, 12));
         setVisible(true);
     }
 
@@ -69,6 +70,7 @@ public class AppWindow extends JFrame {
         setLocationRelativeTo(null);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setFont(new Font("Roboto", Font.PLAIN, 12));
         setVisible(true);
     }
 
@@ -102,6 +104,7 @@ public class AppWindow extends JFrame {
     /**
      * Configures the listener for the JMenu.<br>
      *
+     * @deprecated Use menu.addMenuListener() instead.
      * @param menu The JMenu to be configured.
      * @param l The configured listener.
      */
@@ -112,6 +115,7 @@ public class AppWindow extends JFrame {
     /**
      * Configures the action listener for the JMenuItem.<br>
      *
+     * @deprecated Use menuItem.addActionListener() instead.
      * @param menuItem The JMenuItem to be configured.
      * @param l The configured listener.
      */
@@ -159,5 +163,10 @@ public class AppWindow extends JFrame {
     void refreshWindow() {
         revalidate();
         repaint();
+    }
+
+    @Override
+    public void contentPanelUpdatePerformed(ContentUpdateEvent e) {
+        System.out.println("Content was updated!");
     }
 }

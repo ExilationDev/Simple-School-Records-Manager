@@ -1,75 +1,51 @@
 package appproject;
 
 import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import appproject.containers.*;
+import appproject.lib.AppWindow;
 
 public class AppProject {
+    public static AppWindow window = new AppWindow("Application", true);
 
-    // This is where you initialize your AppWindow and Containers.
+    // This is where you initialize your Menus and Containers.
     // This is also where you initialize menus for your AppWindow.
+
     /**
      * The main method of the project.
      *
      * @param args if code is executed on a terminal command-line, this will
-     * contain an array of command arguments.
+     *             contain an array of command arguments.
      */
     static void main(String[] args) {
-        AppWindow window = new AppWindow("Application", true);
 
         // Menu Bar Setup
-        window.setUpMenu("Test", new ArrayList<>(List.of(new JMenuItem("TestItem"))));
+        window.setUpMenu("File", new ArrayList<>(List.of(new JMenuItem("Import Record"), window.setUpMenuInMenu("Export Record", new ArrayList<>(List.of(new JMenuItem("As JSON")))))));
 
-        window.setUpMenu("Test1", new ArrayList<>(List.of(
-                new JMenuItem("TestItem1"),
-                window.setUpMenuInMenu("TestItem2", new ArrayList<>(List.of(
-                        new JMenuItem("TestItem2TestItem"),
-                        new JMenuItem("TestItem2TestItem1"),
-                        new JMenuItem("TestItem2TestItem2")
-                ))),
-                new JMenuItem("Spawn Dialog")
-        )));
-        window.configureMenuItem(
-                window.getJMenuBar().getMenu(1).getItem(2),
-                (var e) -> window.showContentPaneAsDialog(new MainContainer(), "Spawn Dialog", 200, 200, true)
-        );
+        window.setUpMenu("Edit", new ArrayList<>(List.of(window.setUpMenuInMenu("Record", new ArrayList<>(List.of(new JMenuItem("Insert"), new JMenuItem("Remove"), new JMenuItem("Change")))), window.setUpMenuInMenu("Table", new ArrayList<>(List.of(new JMenuItem("Modify"), new JMenuItem("Layout")))))));
+        ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(0).addActionListener((var e) -> {
+            JOptionPane.showMessageDialog(window, "Insert Button Pressed", "Insert", JOptionPane.QUESTION_MESSAGE);
+        });
 
-        window.setUpMenu("Button", new ArrayList<>(List.of(new JMenuItem("Send Message"))));
-        window.configureMenuItem(
-                window.getJMenuBar().getMenu(2).getItem(0),
-                (var e) -> JOptionPane.showMessageDialog(
-                        window,
-                        "Hello, world!",
-                        "HelloWorld Title",
-                        JOptionPane.QUESTION_MESSAGE
-                )
-        );
+        window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Help"), new JMenuItem("About"), new JMenuItem("Exit"))));
+        window.getJMenuBar().getMenu(2).getItem(0).addActionListener((var e) -> {
+            window.showContentPaneAsDialog(new HelpContainer(), "Help", 200, 200, true);
+        });
+        window.getJMenuBar().getMenu(2).getItem(1).addActionListener((var e) -> {
+            window.showContentPaneAsDialog(new HelpContainer(), "About", 200, 200, true);
+        });
+        window.getJMenuBar().getMenu(2).getItem(2).addActionListener((var e) -> {
+            int res = JOptionPane.showConfirmDialog(window, "Are you sure you want to close the application?", "Exit", JOptionPane.YES_NO_OPTION);
+            if (res == 1) return;
+            JOptionPane.showMessageDialog(window, "The application will now close.", "Exit", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        });
 
-        window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Exit"))));
-        window.configureMenuItem(
-                window.getJMenuBar().getMenu(3).getItem(0),
-                (var e) -> {
-                    int res = JOptionPane.showConfirmDialog(
-                            window,
-                            "Are you sure you want to close the application?",
-                            "Exit",
-                            JOptionPane.YES_NO_OPTION
-                    );
-                    if (res == 1) return;
-                    JOptionPane.showMessageDialog(
-                            window,
-                            "The application will now close.",
-                            "Exit",
-                            JOptionPane.INFORMATION_MESSAGE
-                    );
-                    System.exit(0);
-                }
-        );
+        window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
 
         window.showContentPane(new MainContainer());
+        //window.showContentPane(new HelpContainer());
     }
 }
