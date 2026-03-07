@@ -20,6 +20,7 @@ public class AppProject {
      *             contain an array of command arguments.
      */
     static void main(String[] args) {
+        // Hello World
 
         // Menu Bar Setup
         window.setUpMenu("File", new ArrayList<>(List.of(new JMenuItem("Import Record"), window.setUpMenuInMenu("Export Record", new ArrayList<>(List.of(new JMenuItem("As JSON")))))));
