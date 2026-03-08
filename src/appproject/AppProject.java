@@ -35,7 +35,7 @@ public class AppProject {
             window.showContentPaneAsDialog(new HelpContainer(), "Help", 200, 200, true);
         });
         window.getJMenuBar().getMenu(2).getItem(1).addActionListener((var e) -> {
-            window.showContentPaneAsDialog(new HelpContainer(), "About", 200, 200, true);
+            window.showContentPaneAsDialog(new StudentLogContainer(), "About", 200, 200, true);
         });
         window.getJMenuBar().getMenu(2).getItem(2).addActionListener((var e) -> {
             int res = JOptionPane.showConfirmDialog(window, "Are you sure you want to close the application?", "Exit", JOptionPane.YES_NO_OPTION);

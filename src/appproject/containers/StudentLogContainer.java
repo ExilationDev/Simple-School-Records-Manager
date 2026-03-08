@@ -1,11 +1,15 @@
 package appproject.containers;
 
+import appproject.lib.WindowContainer;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class WindowContainer extends JPanel {
+public class StudentLogContainer extends WindowContainer implements ActionListener {
    
-    public WindowContainer() {
+    public StudentLogContainer() {
         
         setLayout(null);
         setBackground(Color.WHITE);
@@ -69,5 +73,10 @@ public class WindowContainer extends JPanel {
         JButton deleteButton = new JButton("DELETE STUDENT");
         deleteButton.setBounds(290, 310, 135, 30);
         add(deleteButton);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
