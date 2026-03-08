@@ -23,6 +23,7 @@ public class AppProject {
         // Hello World
               //hello andre
               //Hello Carl
+        //Nigga
         // Menu Bar Setup
         window.setUpMenu("File", new ArrayList<>(List.of(new JMenuItem("Import Record"), window.setUpMenuInMenu("Export Record", new ArrayList<>(List.of(new JMenuItem("As JSON")))))));
 
