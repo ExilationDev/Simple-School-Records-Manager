@@ -43,7 +43,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         setBounds(x, y, width, height);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setFont(new Font("Roboto", Font.PLAIN, 12));
+        // setFont(new Font("Roboto", Font.PLAIN, 12));
         setVisible(true);
     }
 
@@ -168,5 +168,6 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     @Override
     public void contentPanelUpdatePerformed(ContentUpdateEvent e) {
         System.out.println("Content was updated!");
+        refreshWindow();
     }
 }
