@@ -23,7 +23,6 @@ public class AppProject {
         // Hello World
               //hello andre
               //Hello Carl
-        //Nigga
         // Menu Bar Setup
         window.setUpMenu("File", new ArrayList<>(List.of(new JMenuItem("Import Record"), window.setUpMenuInMenu("Export Record", new ArrayList<>(List.of(new JMenuItem("As JSON")))))));
 
@@ -49,6 +48,7 @@ public class AppProject {
         window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
 
         window.showContentPane(new MainContainer());
+        window.showContentPane(new StudentLogContainer());
         //window.showContentPane(new HelpContainer());
     }
 }
