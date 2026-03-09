@@ -32,6 +32,9 @@ public class AppProject {
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(0).addActionListener((var e) -> {
             JOptionPane.showMessageDialog(window, "Insert Button Pressed", "Insert", JOptionPane.QUESTION_MESSAGE);
         });
+        ((JMenu) window.getJMenuBar().getMenu(1).getItem(1)).getItem(0).addActionListener((var e) -> {
+         window.showContentPane(new StudentLogContainer());
+        });
 
         window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Help"), new JMenuItem("About"), new JMenuItem("Exit"))));
         window.getJMenuBar().getMenu(2).getItem(0).addActionListener((var e) -> {
