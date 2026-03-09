@@ -5,7 +5,10 @@ import java.awt.*;
 import java.util.*;
 import appproject.AppProject;
 import appproject.containers.HelpContainer;
+import appproject.lib.components.ButtonColors;
+import appproject.lib.components.NavButton;
 import appproject.lib.components.NavLabel;
+import appproject.lib.components.ColorTheme;
 
 /**
  * Main window. Panel or navigation handler for layout design.
@@ -15,6 +18,7 @@ import appproject.lib.components.NavLabel;
  * @author ExilationDev (Kristian Vinz Lizardo)
  */
 public class WindowContainer extends JPanel {
+
 
     protected WindowContainer() {
         ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
@@ -32,15 +36,26 @@ public class WindowContainer extends JPanel {
     public JPanel setUpNavigator() {
         JPanel navigator = new JPanel();
         navigator.setLayout(new BoxLayout(navigator, BoxLayout.Y_AXIS));
-        navigator.setBackground(Color.GRAY);
+        navigator.setBackground(ColorTheme.NAVPANEL_DEFAULT);
         navigator.setPreferredSize(new Dimension(250, 0));
 
         NavLabel home_label = new NavLabel("Main", Color.WHITE);
-        home_label.setMaximumSize(new Dimension(Integer.MAX_VALUE, home_label.getMinimumSize().height + 10));
+        home_label.setMaximumSize(new Dimension(Integer.MAX_VALUE, home_label.getMinimumSize().height + 20));
+        home_label.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(home_label);
 
-        JButton home_btn = new JButton("Home");
-        home_btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, home_btn.getMinimumSize().height + 20));
+        NavButton home_btn = new NavButton(
+                "Home",
+                new ButtonColors(
+                        ColorTheme.NAVBUTTON_DEFAULT,
+                        ColorTheme.NAVBUTTON_HOVER_ENTER,
+                        ColorTheme.NAVBUTTON_PRESSED,
+                        ColorTheme.NAVBUTTON_DISABLED
+                ),
+                Color.WHITE
+        );
+        home_btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, home_btn.getMinimumSize().height + 10));
+        home_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(home_btn);
         home_btn.addActionListener((var e) -> {
             AppProject.window.showContentPane(new HelpContainer());
@@ -48,15 +63,42 @@ public class WindowContainer extends JPanel {
 
         NavLabel record_label = new NavLabel("Record Database", Color.WHITE);
         record_label.setMaximumSize(new Dimension(Integer.MAX_VALUE, record_label.getMinimumSize().height + 10));
+        record_label.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(record_label);
 
-        JButton data_btn = new JButton("Student Records");
-        data_btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, data_btn.getMinimumSize().height + 20));
+        NavButton data_btn = new NavButton(
+                "Student Data Record",
+                new ButtonColors(
+                        ColorTheme.NAVBUTTON_DEFAULT,
+                        ColorTheme.NAVBUTTON_HOVER_ENTER,
+                        ColorTheme.NAVBUTTON_PRESSED,
+                        ColorTheme.NAVBUTTON_DISABLED
+                ),
+                Color.WHITE
+        );
+        data_btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, data_btn.getMinimumSize().height + 10));
+        data_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(data_btn);
+        data_btn.addActionListener((var e) -> {
+            AppProject.window.showContentPane(new HelpContainer());
+        });
 
-        JButton setting_btn = new JButton("Settings");
-        setting_btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, setting_btn.getMinimumSize().height + 20));
+        NavButton setting_btn = new NavButton(
+                "Settings",
+                new ButtonColors(
+                        ColorTheme.NAVBUTTON_DEFAULT,
+                        ColorTheme.NAVBUTTON_HOVER_ENTER,
+                        ColorTheme.NAVBUTTON_PRESSED,
+                        ColorTheme.NAVBUTTON_DISABLED
+                ),
+                Color.WHITE
+        );
+        setting_btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, setting_btn.getMinimumSize().height + 10));
+        setting_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(setting_btn);
+        setting_btn.addActionListener((var e) -> {
+            AppProject.window.showContentPane(new HelpContainer());
+        });
 
         navigator.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         navigator.setVisible(true);
