@@ -69,14 +69,18 @@ public class StudentLogContainer extends WindowContainer implements ActionListen
         JButton addButton = new JButton("ADD STUDENT");
         addButton.setBounds(150, 310, 130, 30);
         add(addButton);
-        
+        addButton.addActionListener(this);
+
+       
         JButton deleteButton = new JButton("DELETE STUDENT");
         deleteButton.setBounds(290, 310, 135, 30);
         add(deleteButton);
+        deleteButton.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+    JOptionPane.showMessageDialog(this, "Student added successfully!");
     }
 }
+
