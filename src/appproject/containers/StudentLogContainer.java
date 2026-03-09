@@ -80,7 +80,7 @@ public class StudentLogContainer extends WindowContainer implements ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    JOptionPane.showMessageDialog(this, "Student added successfully!");
+        JOptionPane.showMessageDialog(this, "Student added successfully!");
     }
 }
 

@@ -52,7 +52,7 @@ public class AppProject {
 
         window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
 
-        window.showContentPane(new MainContainer());
+        window.showContentPane(new LogInContainer());
         // window.showContentPane(new StudentLogContainer());
         // window.showContentPane(new HelpContainer());
     }
