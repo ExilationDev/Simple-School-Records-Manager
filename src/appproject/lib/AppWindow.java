@@ -1,5 +1,7 @@
 package appproject.lib;
 
+import appproject.AppProject;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -7,7 +9,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.event.MenuListener;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -128,10 +129,15 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      * @param c Selected container to be shown.
      * @return The shown JPanel.
      */
-    public JPanel showContentPane(JPanel c) {
+    public WindowContainer showContentPane(WindowContainer c) {
+        if (c == getContentPane()) return null;
+        c.repaint();
         setContentPane(c);
-        refreshWindow();
-        return (JPanel)getContentPane();
+        ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
+        contentUpdateSource.addContentUpdateListener(AppProject.window);
+        contentUpdateSource.invokeEvent();
+        contentUpdateSource.removeContentUpdateListener(AppProject.window);
+        return (WindowContainer)getContentPane();
     }
 
     /**
@@ -145,12 +151,8 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      * @param modal The mode of the dialog.
      * @return The shown JDialog with the container.
      */
-    public JDialog showContentPaneAsDialog(JPanel c, String title, int width, int height, boolean modal) {
+    public JDialog showContentPaneAsDialog(WindowContainer c, String title, int width, int height, boolean modal) {
         JDialog dialog = new JDialog(this, title, modal);
-        dialog.setContentPane(c);
-        dialog.setSize(width, height);
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
         refreshWindow();
         return dialog;
     }
@@ -163,9 +165,13 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         repaint();
     }
 
+    void repaintRecursively() {
+
+    }
+
     @Override
     public void contentPanelUpdatePerformed(ContentUpdateEvent e) {
-        System.out.println("Content was updated!");
+        System.out.println("Content was updated! " + e.getSource());
         refreshWindow();
     }
 }

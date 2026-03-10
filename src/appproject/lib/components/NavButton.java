@@ -39,6 +39,8 @@ public class NavButton extends JButton implements MouseListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        buttonColor.updateColors();
+
         switch (buttonStatus) {
             case IDLE -> setForeground(buttonColor.DEFAULT);
             case MOUSE_ENTER -> setForeground(buttonColor.HOVER_ENTER);
@@ -50,7 +52,10 @@ public class NavButton extends JButton implements MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) { }
+    public void mouseClicked(MouseEvent e) {
+        buttonStatus = ButtonStatus.MOUSE_ENTER;
+        revalidate();
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
