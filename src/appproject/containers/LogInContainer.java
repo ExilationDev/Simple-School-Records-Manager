@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class LogInContainer extends WindowContainer {
+public class LogInContainer extends WindowContainer implements ActionListener {
 
     JPanel panel;
     JLabel StudentIdJLabel, passJLabel;
@@ -41,18 +41,18 @@ public class LogInContainer extends WindowContainer {
         setSize(350, 250);
         setVisible(true);
 
-        login.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        login.addActionListener(this);
+    }
 
-                String id = StudentId.getText();
-                String pass = new String(password.getPassword());
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String id = StudentId.getText();
+        String pass = new String(password.getPassword());
 
-                if (id.equals("admin") && pass.equals("1234")) {
-                    JOptionPane.showMessageDialog(null, "Login Successful");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Invalid Login");
-                }
-            }
-        });
+        if (id.equals("admin") && pass.equals("1234")) {
+            JOptionPane.showMessageDialog(null, "Login Successful");
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Login");
+        }
     }
 }

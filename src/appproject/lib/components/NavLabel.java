@@ -4,14 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class NavLabel extends JComponent {
-    private JLabel label;
 
     public NavLabel(String text, Color color) {
         setLayout(new GridLayout());
         setPreferredSize(new Dimension(100, 100));
         setForeground(color);
 
-        label = new JLabel(text);
+        JLabel label = new JLabel(text);
         label.setForeground(color);
         // label.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
         label.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -27,7 +26,7 @@ public class NavLabel extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.fillRect(0, getHeight() - 5, getWidth(), 5);
+        g.fillRect(0, getHeight() - 3, getWidth(), 3);
     }
 
 

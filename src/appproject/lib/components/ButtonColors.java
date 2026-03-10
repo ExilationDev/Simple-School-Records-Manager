@@ -21,4 +21,11 @@ public class ButtonColors {
         this.PRESSED = DEFAULT;
         this.DISABLED = DEFAULT;
     }
+
+    public ButtonColors() {
+        this.DEFAULT = ColorTheme.NAVBUTTON_DEFAULT;
+        this.HOVER_ENTER = ColorTheme.NAVBUTTON_HOVER_ENTER;
+        this.PRESSED = ColorTheme.NAVBUTTON_PRESSED;
+        this.DISABLED = ColorTheme.NAVBUTTON_DISABLED;
+    }
 }

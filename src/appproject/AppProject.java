@@ -6,7 +6,14 @@ import java.util.List;
 
 import appproject.containers.*;
 import appproject.lib.AppWindow;
+import appproject.lib.WindowContainer;
 
+/**
+ * An application created by UMTC students.
+ *
+ * @see <a href="https://github.com/ExilationDev/CCE107-Group4Project">Github Project</a>
+ * @author Ricky Guiloreza, Kristian Vinz Lizardo, Carl Francis Pacatang, Andre Quima, Jame Cris Yuson
+ */
 public class AppProject {
     public static AppWindow window = new AppWindow("Application", true);
 
@@ -21,9 +28,11 @@ public class AppProject {
      */
     static void main(String[] args) {
         // Hello World
-            // hello andre
-            // Hello Carl
-            // Hello guys
+        // hello andre
+        // Hello Carl
+        // Hello guys
+
+        PreloadContainers();
 
         // Menu Bar Setup
         window.setUpMenu("File", new ArrayList<>(List.of(new JMenuItem("Import Record"), window.setUpMenuInMenu("Export Record", new ArrayList<>(List.of(new JMenuItem("As JSON")))))));
@@ -33,7 +42,7 @@ public class AppProject {
             JOptionPane.showMessageDialog(window, "Insert Button Pressed", "Insert", JOptionPane.QUESTION_MESSAGE);
         });
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(1)).getItem(0).addActionListener((var e) -> {
-         window.showContentPane(new StudentLogContainer());
+            window.showContentPane(new StudentLogContainer());
         });
 
         window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Help"), new JMenuItem("About"), new JMenuItem("Exit"))));
@@ -52,8 +61,26 @@ public class AppProject {
 
         window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
 
-        window.showContentPane(new LogInContainer());
-        // window.showContentPane(new StudentLogContainer());
-        // window.showContentPane(new HelpContainer());
+        window.showContentPane(LoadedContainers.mainContainer);
+    }
+
+    static void PreloadContainers() {
+        LoadedContainers.loginContainer = new LogInContainer();
+        LoadedContainers.mainContainer = new MainContainer();
+        // LoadedContainers.classesContainer = new ClassesContainer();
+        // LoadedContainers.studentsContainer = new StudentsContainer();
+        LoadedContainers.themesContainer = new ThemesContainer();
+        LoadedContainers.helpContainer = new HelpContainer();
+        // LoadedContainers.aboutContainer = new AboutContainer();
+    }
+
+    public static class LoadedContainers {
+        public static WindowContainer loginContainer;
+        public static WindowContainer mainContainer;
+        public static WindowContainer classesContainer;
+        public static WindowContainer studentsContainer;
+        public static WindowContainer themesContainer;
+        public static WindowContainer helpContainer;
+        public static WindowContainer aboutContainer;
     }
 }

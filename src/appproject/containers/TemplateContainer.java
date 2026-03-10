@@ -1,22 +1,20 @@
 package appproject.containers;
 
-import java.awt.*;
-import java.awt.event.*;
-
-import appproject.AppProject;
 import appproject.lib.WindowContainer;
-import appproject.lib.components.FontManager;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 // Container (or Scenes) for Navigation
-public class MainContainer extends WindowContainer implements ActionListener {
+public class TemplateContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
     JPanel navigator;
     JPanel content;
 
     // This constructor is an equivalent method to the main() method of AppProject.
-    public MainContainer() {
+    public TemplateContainer() {
         super();
         setLayout(new BorderLayout());
 
@@ -24,6 +22,7 @@ public class MainContainer extends WindowContainer implements ActionListener {
         add(content = setUpContent(), BorderLayout.CENTER);
 
         // Put content GUI code here
+        // Make sure you use the content variable whenever you add components!
 
         setVisible(true);
     }
