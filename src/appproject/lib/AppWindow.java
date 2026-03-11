@@ -165,10 +165,6 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         repaint();
     }
 
-    void repaintRecursively() {
-
-    }
-
     @Override
     public void contentPanelUpdatePerformed(ContentUpdateEvent e) {
         System.out.println("Content was updated! " + e.getSource());

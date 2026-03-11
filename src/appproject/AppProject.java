@@ -15,7 +15,7 @@ import appproject.lib.WindowContainer;
  * @author Ricky Guiloreza, Kristian Vinz Lizardo, Carl Francis Pacatang, Andre Quima, Jame Cris Yuson
  */
 public class AppProject {
-    public static AppWindow window = new AppWindow("Application", true);
+    public static AppWindow window = new AppWindow("School Record Manager Application", true);
 
     // This is where you initialize your Menus and Containers.
     // This is also where you initialize menus for your AppWindow.
@@ -67,7 +67,7 @@ public class AppProject {
     static void PreloadContainers() {
         LoadedContainers.loginContainer = new LogInContainer();
         LoadedContainers.mainContainer = new MainContainer();
-        // LoadedContainers.classesContainer = new ClassesContainer();
+        LoadedContainers.classesContainer = new ClassesContainer();
         // LoadedContainers.studentsContainer = new StudentsContainer();
         LoadedContainers.themesContainer = new ThemesContainer();
         LoadedContainers.helpContainer = new HelpContainer();

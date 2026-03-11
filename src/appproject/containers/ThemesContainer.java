@@ -13,7 +13,7 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
     JPanel content;
 
     JLabel theme_label = new JLabel("Themes");
-    JLabel theme_dropdown_label = new JLabel("Preset");
+    JLabel theme_dropdown_label = new JLabel("Window Preset");
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public ThemesContainer() {
@@ -25,11 +25,9 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
         // Put content GUI code here
         theme_label.setBounds(20, 20, 100, 20);
         theme_label.setFont(new Font(null, Font.PLAIN, 20));
-        theme_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         content.add(theme_label);
 
         theme_dropdown_label.setBounds(35, 50, 100, 20);
-        theme_dropdown_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         content.add(theme_dropdown_label);
 
         JComboBox theme_dropdown = new JComboBox();
@@ -37,7 +35,7 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
         theme_dropdown.addItem(ColorTheme.Themes.DARK);
         theme_dropdown.addItem(ColorTheme.Themes.UM);
         theme_dropdown.addItem(ColorTheme.Themes.SMC);
-        theme_dropdown.setBounds(135, 50, 150, 20);
+        theme_dropdown.setBounds(185, 50, 150, 20);
         theme_dropdown.addActionListener(this);
         content.add(theme_dropdown);
 

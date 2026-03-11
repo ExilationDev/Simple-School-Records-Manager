@@ -24,8 +24,8 @@ public class WindowContainer extends JPanel {
 //        contentUpdateSource.removeContentUpdateListener(AppProject.window);
 //    }
 
-    JPanel content = new JPanel();
-    JPanel navigator = new JPanel();
+    final JPanel content = new JPanel();
+    final JPanel navigator = new JPanel();
 
     /**
      * Sets up the side navigator panel.
@@ -35,7 +35,6 @@ public class WindowContainer extends JPanel {
      */
     public JPanel setUpNavigator() {
         navigator.setLayout(new BoxLayout(navigator, BoxLayout.Y_AXIS));
-        navigator.setBackground(ColorTheme.NAVPANEL_DEFAULT);
         navigator.setPreferredSize(new Dimension(250, 0));
 
         NavLabel home_label = new NavLabel("Home", ColorTheme.NAVPANEL_FONT_COLOR);
@@ -61,7 +60,7 @@ public class WindowContainer extends JPanel {
         classes_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(classes_btn);
         classes_btn.addActionListener((var e) -> {
-            AppProject.window.showContentPane(new HelpContainer());
+            AppProject.window.showContentPane(AppProject.LoadedContainers.classesContainer);
         });
 
         NavButton students_btn = new NavButton("Students", new ButtonColors(), ColorTheme.NAVPANEL_FONT_COLOR);
@@ -99,7 +98,6 @@ public class WindowContainer extends JPanel {
         setOpaque(true);
         // content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.setLayout(null);
-        content.setBackground(ColorTheme.CONTENT_DEFAULT);
         content.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         content.setVisible(true);

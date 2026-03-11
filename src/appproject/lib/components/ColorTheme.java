@@ -53,7 +53,16 @@ public class ColorTheme {
                 CONTENT_FONT_COLOR = new Color(255, 255, 255);
             }
             case UM -> {
+                NAVPANEL_DEFAULT = new Color(255, 255, 255);
+                NAVPANEL_FONT_COLOR = new Color(175, 37, 50);
 
+                NAVBUTTON_DEFAULT = new Color(255, 255, 255);
+                NAVBUTTON_HOVER_ENTER = new Color(220, 220, 220);
+                NAVBUTTON_PRESSED = new Color(200, 200, 200);
+                NAVBUTTON_DISABLED = new Color(150, 150, 150);
+
+                CONTENT_DEFAULT = new Color(238, 238, 238);
+                CONTENT_FONT_COLOR = new Color(37, 37, 37);
             }
             case SMC -> {
 

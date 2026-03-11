@@ -41,6 +41,8 @@ public class NavButton extends JButton implements MouseListener {
 
         buttonColor.updateColors();
 
+        labelColor = ColorTheme.NAVPANEL_FONT_COLOR;
+        label.setForeground(this.labelColor);
         switch (buttonStatus) {
             case IDLE -> setForeground(buttonColor.DEFAULT);
             case MOUSE_ENTER -> setForeground(buttonColor.HOVER_ENTER);

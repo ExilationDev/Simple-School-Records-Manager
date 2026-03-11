@@ -1,6 +1,7 @@
 package appproject.containers;
 
 import appproject.lib.WindowContainer;
+import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,12 @@ public class TemplateContainer extends WindowContainer implements ActionListener
         // Make sure you use the content variable whenever you add components!
 
         setVisible(true);
+    }
+
+    // repaint function. Put setForegrounds of your JComponent here
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
     }
 
     // Put any functionalities here acquired from doing an action event from any action listener in this container.

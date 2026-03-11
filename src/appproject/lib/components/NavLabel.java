@@ -30,6 +30,7 @@ public class NavLabel extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        this.color = ColorTheme.NAVPANEL_FONT_COLOR;
         setForeground(this.color);
         label.setForeground(this.color);
 
