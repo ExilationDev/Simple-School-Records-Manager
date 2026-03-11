@@ -16,12 +16,15 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
     JPanel content;
 
     JLabel classes_label = new JLabel("Classes");
+    JButton classes_info_btn = new JButton("Check Info");
 
     // Model Data Types
     // int code, String class, String name, Programs program, double units, *reserved for buttons about full description*
     public static TableModel table_model = new DefaultTableModel(new Object[][]
             {
-                {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0}
+                    {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0},
+                    {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0},
+                    {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0}
             },
             new String[]{"Code", "Class", "Name", "Program", "Units"}
     ) {
@@ -57,6 +60,9 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
         classes_table.getColumn("Program").setPreferredWidth(50);
         classes_table.getColumn("Units").setPreferredWidth(25);
         content.add(table_scroll_pane);
+
+        classes_info_btn.setBounds(35, 360, 100, 20);
+        content.add(classes_info_btn);
 
         setVisible(true);
     }

@@ -1,7 +1,11 @@
 package appproject.lib;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import appproject.AppProject;
 import appproject.containers.*;
@@ -36,6 +40,15 @@ public class WindowContainer extends JPanel {
     public JPanel setUpNavigator() {
         navigator.setLayout(new BoxLayout(navigator, BoxLayout.Y_AXIS));
         navigator.setPreferredSize(new Dimension(250, 0));
+
+        BufferedImage logo = null;
+        try {
+            logo = ImageIO.read(new File("src/appproject/images/logo_template.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        JLabel logo_label = new JLabel(new ImageIcon(logo));
+        navigator.add(logo_label);
 
         NavLabel home_label = new NavLabel("Home", ColorTheme.NAVPANEL_FONT_COLOR);
         home_label.setMaximumSize(new Dimension(Integer.MAX_VALUE, home_label.getMinimumSize().height + 20));

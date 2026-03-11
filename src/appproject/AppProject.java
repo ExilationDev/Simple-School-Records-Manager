@@ -39,7 +39,7 @@ public class AppProject {
 
         window.setUpMenu("Edit", new ArrayList<>(List.of(window.setUpMenuInMenu("Record", new ArrayList<>(List.of(new JMenuItem("Insert"), new JMenuItem("Remove"), new JMenuItem("Change")))), window.setUpMenuInMenu("Table", new ArrayList<>(List.of(new JMenuItem("Modify"), new JMenuItem("Layout")))))));
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(0).addActionListener((var e) -> {
-            JOptionPane.showMessageDialog(window, "Insert Button Pressed", "Insert", JOptionPane.QUESTION_MESSAGE);
+            window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 300, 300, true);
         });
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(1)).getItem(0).addActionListener((var e) -> {
             window.showContentPane(new StudentLogContainer());

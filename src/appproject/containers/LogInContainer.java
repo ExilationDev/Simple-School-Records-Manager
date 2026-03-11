@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @author Andre Quima
+ */
 public class LogInContainer extends WindowContainer implements ActionListener {
 
     JPanel panel;

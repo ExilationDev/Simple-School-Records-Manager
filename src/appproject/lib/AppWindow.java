@@ -50,7 +50,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     /**
      * <h5>AppWindow - INITIALIZATION</h5>
      * Sets up a <b><i>centered</i></b> application window.<br>
-     * <b>Width</b> and <b>height</b> values are acquired from a desktop's resolution.<br>
+     * Width and height values are acquired from any active monitor resolution.<br>
      *
      * @param title The application window's title.
      * @param resizable If window is resizable.
@@ -92,6 +92,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      *
      * @param label Button label of the Menu.
      * @param items Items contained in the Menu.
+     * @return The JMenu.
      */
     public JMenu setUpMenuInMenu(String label, ArrayList<JMenuItem> items) {
         JMenu menu = new JMenu(label);
@@ -103,7 +104,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     /**
      * Configures the listener for the JMenu.<br>
      *
-     * @deprecated Use menu.addMenuListener() instead.
+     * @deprecated Use JMenu.addMenuListener() instead.
      * @param menu The JMenu to be configured.
      * @param l The configured listener.
      */
@@ -114,7 +115,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     /**
      * Configures the action listener for the JMenuItem.<br>
      *
-     * @deprecated Use menuItem.addActionListener() instead.
+     * @deprecated Use JMenuItem.addActionListener() instead.
      * @param menuItem The JMenuItem to be configured.
      * @param l The configured listener.
      */
@@ -153,6 +154,10 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      */
     public JDialog showContentPaneAsDialog(WindowContainer c, String title, int width, int height, boolean modal) {
         JDialog dialog = new JDialog(this, title, modal);
+        dialog.setContentPane(c);
+        dialog.setSize(width, height);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
         refreshWindow();
         return dialog;
     }

@@ -34,7 +34,7 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
         theme_dropdown.addItem(ColorTheme.Themes.DEFAULT);
         theme_dropdown.addItem(ColorTheme.Themes.DARK);
         theme_dropdown.addItem(ColorTheme.Themes.UM);
-        // theme_dropdown.addItem(ColorTheme.Themes.SMC);
+        theme_dropdown.addItem(ColorTheme.Themes.SMC);
         theme_dropdown.setBounds(185, 50, 150, 20);
         theme_dropdown.addActionListener(this);
         content.add(theme_dropdown);
