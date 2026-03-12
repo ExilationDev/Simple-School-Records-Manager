@@ -13,8 +13,14 @@ public class AboutContainer extends WindowContainer implements ActionListener {
     // JPanel navigator;
     JPanel content;
 
-    JLabel label = new JLabel("test");
-
+    JLabel about_label = new JLabel("About Application");
+    JLabel description_label = new JLabel(
+            "<html>" +
+                    "Student Record Manager is an application created by UM Students." +
+                    "<br>" +
+                    "Kristian Vinz D. Lizardo (ExilationDev)" +
+            "</html>"
+    );
     // This constructor is an equivalent method to the main() method of AppProject.
     public AboutContainer() {
         super();
@@ -25,10 +31,14 @@ public class AboutContainer extends WindowContainer implements ActionListener {
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!
-        label.setBounds(10, 0, 100, 100);
-        label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        about_label.setBounds(20, 20, 200, 20);
+        about_label.setFont(new Font(null, Font.PLAIN, 20));
 
-        content.add(label);
+        description_label.setBounds(35, 50, 500, 300);
+        description_label.setVerticalAlignment(JLabel.TOP);
+
+        content.add(about_label);
+        content.add(description_label);
 
         setVisible(true);
     }
@@ -37,7 +47,8 @@ public class AboutContainer extends WindowContainer implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        about_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        description_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         System.out.println("Repaint from " + getClass().getName());
     }
 
