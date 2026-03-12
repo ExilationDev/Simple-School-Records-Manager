@@ -97,6 +97,7 @@ public class WindowContainer extends JPanel {
         });
 
         FontManager.changeFont(navigator);
+        navigator.setBackground(ColorTheme.NAVPANEL_DEFAULT);
         navigator.setVisible(true);
         return navigator;
     }
@@ -112,7 +113,7 @@ public class WindowContainer extends JPanel {
         // content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.setLayout(null);
         content.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
+        content.setBackground(ColorTheme.CONTENT_DEFAULT);
         content.setVisible(true);
         return content;
     }
@@ -122,6 +123,7 @@ public class WindowContainer extends JPanel {
         super.paintComponent(g);
         navigator.setBackground(ColorTheme.NAVPANEL_DEFAULT);
         content.setBackground(ColorTheme.CONTENT_DEFAULT);
+        System.out.println("repaint!");
     }
 }
 

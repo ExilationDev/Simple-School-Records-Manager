@@ -7,14 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.event.MenuListener;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * <i>Completely original backend code :)</i><br>
+ * <i>Completely original backend code.</i><br>
  * Flexible window application manager for easy and simple use.
  * <p style="color:#ff8a8a">Not beginner friendly.<p/><br>
  *
@@ -132,7 +131,6 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      */
     public WindowContainer showContentPane(WindowContainer c) {
         if (c == getContentPane()) return null;
-        c.repaint();
         setContentPane(c);
         ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
         contentUpdateSource.addContentUpdateListener(AppProject.window);
@@ -158,7 +156,6 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         dialog.setSize(width, height);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        refreshWindow();
         return dialog;
     }
 

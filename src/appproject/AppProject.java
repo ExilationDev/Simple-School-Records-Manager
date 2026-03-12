@@ -26,7 +26,7 @@ public class AppProject {
      * @param args if code is executed on a terminal command-line, this will
      *             contain an array of command arguments.
      */
-    static void main(String[] args) {
+    public static void main(String[] args) {
         // Hello World
         // hello andre
         // Hello Carl
@@ -35,24 +35,22 @@ public class AppProject {
         PreloadContainers();
 
         // Menu Bar Setup
-        window.setUpMenu("File", new ArrayList<>(List.of(new JMenuItem("Import Record"), window.setUpMenuInMenu("Export Record", new ArrayList<>(List.of(new JMenuItem("As JSON")))))));
-
         window.setUpMenu("Edit", new ArrayList<>(List.of(window.setUpMenuInMenu("Record", new ArrayList<>(List.of(new JMenuItem("Insert"), new JMenuItem("Remove"), new JMenuItem("Change")))), window.setUpMenuInMenu("Table", new ArrayList<>(List.of(new JMenuItem("Modify"), new JMenuItem("Layout")))))));
-        ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(0).addActionListener((var e) -> {
+        ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).addActionListener((var e) -> {
             window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 300, 300, true);
         });
-        ((JMenu) window.getJMenuBar().getMenu(1).getItem(1)).getItem(0).addActionListener((var e) -> {
-            window.showContentPane(new StudentLogContainer());
+        ((JMenu) window.getJMenuBar().getMenu(0).getItem(1)).getItem(0).addActionListener((var e) -> {
+            window.showContentPaneAsDialog(new StudentLogContainer(), "Modify Table", 300, 300, true);
         });
 
         window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Help"), new JMenuItem("About"), new JMenuItem("Exit"))));
-        window.getJMenuBar().getMenu(2).getItem(0).addActionListener((var e) -> {
+        window.getJMenuBar().getMenu(1).getItem(0).addActionListener((var e) -> {
             window.showContentPaneAsDialog(new HelpContainer(), "Help", 200, 200, true);
         });
-        window.getJMenuBar().getMenu(2).getItem(1).addActionListener((var e) -> {
-            window.showContentPaneAsDialog(new StudentLogContainer(), "About", 200, 200, true);
+        window.getJMenuBar().getMenu(1).getItem(1).addActionListener((var e) -> {
+            window.showContentPaneAsDialog(new AboutContainer(), "About", 400, 200, false);
         });
-        window.getJMenuBar().getMenu(2).getItem(2).addActionListener((var e) -> {
+        window.getJMenuBar().getMenu(1).getItem(2).addActionListener((var e) -> {
             int res = JOptionPane.showConfirmDialog(window, "Are you sure you want to close the application?", "Exit", JOptionPane.YES_NO_OPTION);
             if (res == 1) return;
             JOptionPane.showMessageDialog(window, "The application will now close.", "Exit", JOptionPane.INFORMATION_MESSAGE);
