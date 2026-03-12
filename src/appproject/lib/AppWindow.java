@@ -2,11 +2,7 @@ package appproject.lib;
 
 import appproject.AppProject;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -22,6 +18,9 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("unused")
 public class AppWindow extends JFrame implements ContentUpdateListener {
+
+    ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
+
     /**
      * <h5>AppWindow - INITIALIZATION</h5>
      * Sets up an application window.<br>
@@ -130,9 +129,9 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      * @return The shown JPanel.
      */
     public WindowContainer showContentPane(WindowContainer c) {
+        // System.out.println(getContentPane().getName());
         if (c == getContentPane()) return null;
         setContentPane(c);
-        ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
         contentUpdateSource.addContentUpdateListener(AppProject.window);
         contentUpdateSource.invokeEvent();
         contentUpdateSource.removeContentUpdateListener(AppProject.window);
@@ -169,7 +168,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
 
     @Override
     public void contentPanelUpdatePerformed(ContentUpdateEvent e) {
-        System.out.println("Content was updated! " + e.getSource());
+        System.out.println("Content was updated! " + e.getSource().getClass().getName());
         refreshWindow();
     }
 }

@@ -28,8 +28,8 @@ public class WindowContainer extends JPanel {
 //        contentUpdateSource.removeContentUpdateListener(AppProject.window);
 //    }
 
-    final JPanel content = new JPanel();
-    final JPanel navigator = new JPanel();
+    private static JPanel navigator;
+    private JPanel content;
 
     /**
      * Sets up the side navigator panel.
@@ -37,7 +37,7 @@ public class WindowContainer extends JPanel {
      * @see JPanel
      * @return The JPanel of the navigator.
      */
-    public JPanel setUpNavigator() {
+    static void setUpNavigator() {
         navigator.setLayout(new BoxLayout(navigator, BoxLayout.Y_AXIS));
         navigator.setPreferredSize(new Dimension(250, 0));
 
@@ -51,7 +51,7 @@ public class WindowContainer extends JPanel {
         dashboard_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(dashboard_btn);
         dashboard_btn.addActionListener((var e) -> {
-            AppProject.window.showContentPane(AppProject.LoadedContainers.mainContainer);
+            AppProject.window.showContentPane(new MainContainer());
         });
 
         NavLabel record_label = new NavLabel("Record Database", ColorTheme.NAVPANEL_FONT_COLOR);
@@ -64,7 +64,7 @@ public class WindowContainer extends JPanel {
         classes_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(classes_btn);
         classes_btn.addActionListener((var e) -> {
-            AppProject.window.showContentPane(AppProject.LoadedContainers.classesContainer);
+            AppProject.window.showContentPane(new ClassesContainer());
         });
 
         NavButton students_btn = new NavButton("Students", new ButtonColors(), ColorTheme.NAVPANEL_FONT_COLOR);
@@ -84,12 +84,20 @@ public class WindowContainer extends JPanel {
         setting_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(setting_btn);
         setting_btn.addActionListener((var e) -> {
-            AppProject.window.showContentPane(AppProject.LoadedContainers.themesContainer);
+            AppProject.window.showContentPane(new ThemesContainer());
         });
 
         FontManager.changeFont(navigator);
         navigator.setBackground(ColorTheme.NAVPANEL_DEFAULT);
         navigator.setVisible(true);
+    }
+
+    public static JPanel getNavigator() {
+        if (navigator == null) {
+            navigator = new JPanel();
+            setUpNavigator();
+            System.out.println("INIT: Successfully set up navigator!");
+        }
         return navigator;
     }
 
@@ -99,13 +107,19 @@ public class WindowContainer extends JPanel {
      * @see javax.swing.JPanel
      * @return The JPanel of the content.
      */
-    public JPanel setUpContent() {
-        setOpaque(true);
+    void setUpContent() {
         // content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.setLayout(null);
         content.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         content.setBackground(ColorTheme.CONTENT_DEFAULT);
         content.setVisible(true);
+    }
+
+    public JPanel getContent() {
+        if (content == null) {
+            content = new JPanel();
+            setUpContent();
+        }
         return content;
     }
 
@@ -114,7 +128,7 @@ public class WindowContainer extends JPanel {
         super.paintComponent(g);
         navigator.setBackground(ColorTheme.NAVPANEL_DEFAULT);
         content.setBackground(ColorTheme.CONTENT_DEFAULT);
-        System.out.println("repaint!");
+        System.out.println("Repaint " + getClass().getName() + "!");
     }
 }
 

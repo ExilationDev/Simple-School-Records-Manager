@@ -17,7 +17,7 @@ public class InsertContainer extends WindowContainer implements ActionListener {
         setLayout(new BorderLayout());
 
         // add(navigator = setUpNavigator(), BorderLayout.WEST);
-        add(content = setUpContent(), BorderLayout.CENTER);
+        add(getContent(), BorderLayout.CENTER);
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!

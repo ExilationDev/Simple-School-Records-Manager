@@ -11,16 +11,12 @@ import java.awt.event.ActionListener;
 // Container (or Scenes) for Navigation
 public class TemplateContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
-    JPanel navigator;
-    JPanel content;
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public TemplateContainer() {
-        super();
         setLayout(new BorderLayout());
-
-        add(navigator = setUpNavigator(), BorderLayout.WEST);
-        add(content = setUpContent(), BorderLayout.CENTER);
+        add(getNavigator(), BorderLayout.WEST);
+        add(getContent(), BorderLayout.CENTER);
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!
@@ -28,7 +24,7 @@ public class TemplateContainer extends WindowContainer implements ActionListener
         setVisible(true);
     }
 
-    // repaint function. Put setForegrounds of your JComponent here
+    // repaint function. Put setForegrounds of your JComponent here to sync with the themes.
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

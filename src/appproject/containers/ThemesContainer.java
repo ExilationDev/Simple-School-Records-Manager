@@ -9,8 +9,6 @@ import appproject.lib.components.ColorTheme;
 
 public class ThemesContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
-    JPanel navigator;
-    JPanel content;
 
     JLabel theme_label = new JLabel("Themes");
     JLabel theme_dropdown_label = new JLabel("Window Preset");
@@ -19,16 +17,16 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
     public ThemesContainer() {
         setLayout(new BorderLayout());
 
-        add(navigator = setUpNavigator(), BorderLayout.WEST);
-        add(content = setUpContent(), BorderLayout.CENTER);
+        add(getNavigator(), BorderLayout.WEST);
+        add(getContent(), BorderLayout.CENTER);
 
         // Put content GUI code here
         theme_label.setBounds(20, 20, 100, 20);
         theme_label.setFont(new Font(null, Font.PLAIN, 20));
-        content.add(theme_label);
+        getContent().add(theme_label);
 
         theme_dropdown_label.setBounds(35, 50, 100, 20);
-        content.add(theme_dropdown_label);
+        getContent().add(theme_dropdown_label);
 
         JComboBox theme_dropdown = new JComboBox();
         theme_dropdown.addItem(ColorTheme.Themes.DEFAULT);
@@ -37,7 +35,7 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
         theme_dropdown.addItem(ColorTheme.Themes.SMC);
         theme_dropdown.setBounds(185, 50, 150, 20);
         theme_dropdown.addActionListener(this);
-        content.add(theme_dropdown);
+        getContent().add(theme_dropdown);
 
         setVisible(true);
     }

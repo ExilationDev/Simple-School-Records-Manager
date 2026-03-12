@@ -12,15 +12,12 @@ import java.awt.event.ActionListener;
 
 public class ClassesContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
-    JPanel navigator;
-    JPanel content;
-
     JLabel classes_label = new JLabel("Classes");
     JButton classes_info_btn = new JButton("Check Info");
 
     // Model Data Types
     // int code, String class, String name, Programs program, double units, *reserved for buttons about full description*
-    public static TableModel table_model = new DefaultTableModel(new Object[][]
+    public TableModel table_model = new DefaultTableModel(new Object[][]
             {
                     {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0},
                     {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0},
@@ -33,21 +30,20 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
             return false;
         }
     };
-    public static JTable classes_table = new JTable(table_model);
+    public JTable classes_table = new JTable(table_model);
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public ClassesContainer() {
-        super();
         setLayout(new BorderLayout());
 
-        add(navigator = setUpNavigator(), BorderLayout.WEST);
-        add(content = setUpContent(), BorderLayout.CENTER);
+        add(getNavigator(), BorderLayout.WEST);
+        add(getContent(), BorderLayout.CENTER);
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!
         classes_label.setBounds(20, 20, 100, 20);
         classes_label.setFont(new Font(null, Font.PLAIN, 20));
-        content.add(classes_label);
+        getContent().add(classes_label);
 
         JScrollPane table_scroll_pane = new JScrollPane(classes_table);
         table_scroll_pane.setBounds(35, 50, 600, 300);
@@ -59,10 +55,10 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
         classes_table.getColumn("Name").setPreferredWidth(300);
         classes_table.getColumn("Program").setPreferredWidth(50);
         classes_table.getColumn("Units").setPreferredWidth(25);
-        content.add(table_scroll_pane);
+        getContent().add(table_scroll_pane);
 
         classes_info_btn.setBounds(35, 360, 100, 20);
-        content.add(classes_info_btn);
+        getContent().add(classes_info_btn);
 
         setVisible(true);
     }

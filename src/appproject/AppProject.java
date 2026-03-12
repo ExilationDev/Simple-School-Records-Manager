@@ -32,8 +32,6 @@ public class AppProject {
         // Hello Carl
         // Hello guys
 
-        PreloadContainers();
-
         // Menu Bar Setup
         window.setUpMenu("Edit", new ArrayList<>(List.of(window.setUpMenuInMenu("Record", new ArrayList<>(List.of(new JMenuItem("Insert"), new JMenuItem("Remove"), new JMenuItem("Change")))), window.setUpMenuInMenu("Table", new ArrayList<>(List.of(new JMenuItem("Modify"), new JMenuItem("Layout")))))));
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).addActionListener((var e) -> {
@@ -48,7 +46,7 @@ public class AppProject {
             window.showContentPaneAsDialog(new HelpContainer(), "Help", 200, 200, true);
         });
         window.getJMenuBar().getMenu(1).getItem(1).addActionListener((var e) -> {
-            window.showContentPaneAsDialog(new AboutContainer(), "About", 600, 400, false);
+            window.showContentPaneAsDialog(new AboutContainer(), "About", 600, 400, true);
         });
         window.getJMenuBar().getMenu(1).getItem(2).addActionListener((var e) -> {
             int res = JOptionPane.showConfirmDialog(window, "Are you sure you want to close the application?", "Exit", JOptionPane.YES_NO_OPTION);
@@ -59,26 +57,6 @@ public class AppProject {
 
         window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
 
-        window.showContentPane(LoadedContainers.mainContainer);
-    }
-
-    static void PreloadContainers() {
-        LoadedContainers.loginContainer = new LogInContainer();
-        LoadedContainers.mainContainer = new MainContainer();
-        LoadedContainers.classesContainer = new ClassesContainer();
-        // LoadedContainers.studentsContainer = new StudentsContainer();
-        LoadedContainers.themesContainer = new ThemesContainer();
-        LoadedContainers.helpContainer = new HelpContainer();
-        // LoadedContainers.aboutContainer = new AboutContainer();
-    }
-
-    public static class LoadedContainers {
-        public static WindowContainer loginContainer;
-        public static WindowContainer mainContainer;
-        public static WindowContainer classesContainer;
-        public static WindowContainer studentsContainer;
-        public static WindowContainer themesContainer;
-        public static WindowContainer helpContainer;
-        public static WindowContainer aboutContainer;
+        window.showContentPane(new MainContainer());
     }
 }

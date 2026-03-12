@@ -8,14 +8,13 @@ import appproject.lib.WindowContainer;
 
 public class HelpContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
-    JPanel content;
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public HelpContainer() {
         super();
         setLayout(new BorderLayout());
 
-        add(content = setUpContent(), BorderLayout.CENTER);
+        add(getContent(), BorderLayout.CENTER);
 
         setVisible(true);
     }
