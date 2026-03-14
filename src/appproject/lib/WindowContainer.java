@@ -26,7 +26,7 @@ public class WindowContainer extends JPanel {
      */
     void setUpNavigator() {
         navigator.setLayout(new BoxLayout(navigator, BoxLayout.Y_AXIS));
-        navigator.setPreferredSize(new Dimension(250, 100));
+        navigator.setPreferredSize(new Dimension(200, 100));
 
         NavLabel home_label = new NavLabel("Home", ColorTheme.NAVPANEL_FONT_COLOR);
         home_label.setMaximumSize(new Dimension(Integer.MAX_VALUE, home_label.getMinimumSize().height + 20));
