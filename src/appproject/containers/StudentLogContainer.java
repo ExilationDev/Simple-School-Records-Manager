@@ -8,73 +8,90 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StudentLogContainer extends WindowContainer implements ActionListener {
-   
+
     public StudentLogContainer() {
-        
-        setLayout(null);
-        setBackground(Color.WHITE);
-        
+
+        JPanel content = getContent();
+        content.setLayout(null);
+
+        setLayout(new BorderLayout());
+        add(content, BorderLayout.CENTER);
+
+        int labelX = 30;
+        int fieldX = 150;
+        int width = 210;
+        int height = 25;
+        int rowGap = 40;
+
+        // Title
         JLabel title = new JLabel("STUDENT INFORMATION");
-        title.setBounds(20, 20, 200, 30);
-        add(title);
-        
+        title.setFont(new Font("Arial", Font.BOLD, 16));
+        title.setBounds(80, 20, 250, 30);
+        content.add(title);
+
+        // Student ID
         JLabel nameLabel = new JLabel("Student ID:");
-        nameLabel.setBounds(20, 60, 120, 25);
-        add(nameLabel);
-        
+        nameLabel.setBounds(labelX, 60, 120, height);
+        content.add(nameLabel);
+
         JTextField idField = new JTextField();
-        idField.setBounds(150, 60, 200, 25);
-        add(idField);
-        
-        JLabel FirstNameLabel = new JLabel("First Name:");
-        FirstNameLabel.setBounds(20, 100, 120, 25);
-        add(FirstNameLabel);
-        
-        JTextField FirstNameField = new JTextField();
-        FirstNameField.setBounds(150, 100, 200, 25);
-        add(FirstNameField);
-        
-        JLabel LastNameLabel = new JLabel("Last Name:");
-        LastNameLabel.setBounds(20, 140, 120, 25);
-        add(LastNameLabel);
-        
-        JTextField LastNameField = new JTextField();
-        LastNameField.setBounds(150, 140, 200, 25);
-        add(LastNameField);
-        
+        idField.setBounds(fieldX, 60, width, height);
+        content.add(idField);
+
+        // First Name
+        JLabel firstNameLabel = new JLabel("First Name:");
+        firstNameLabel.setBounds(labelX, 60 + rowGap, 120, height);
+        content.add(firstNameLabel);
+
+        JTextField firstNameField = new JTextField();
+        firstNameField.setBounds(fieldX, 60 + rowGap, width, height);
+        content.add(firstNameField);
+
+        // Last Name
+        JLabel lastNameLabel = new JLabel("Last Name:");
+        lastNameLabel.setBounds(labelX, 60 + rowGap * 2, 120, height);
+        content.add(lastNameLabel);
+
+        JTextField lastNameField = new JTextField();
+        lastNameField.setBounds(fieldX, 60 + rowGap * 2, width, height);
+        content.add(lastNameField);
+
+        // Age
         JLabel ageLabel = new JLabel("Age:");
-        ageLabel.setBounds(20, 180, 120, 25);
-        add(ageLabel);
-        
+        ageLabel.setBounds(labelX, 60 + rowGap * 3, 120, height);
+        content.add(ageLabel);
+
         JTextField ageField = new JTextField();
-        ageField.setBounds(150, 180, 200, 25);
-        add(ageField);
-        
-        JLabel courseCodeLabel = new JLabel ("Course Code:");
-        courseCodeLabel.setBounds(20, 220, 120, 25);
-        add(courseCodeLabel);
-        
+        ageField.setBounds(fieldX, 60 + rowGap * 3, width, height);
+        content.add(ageField);
+
+        // Course Code
+        JLabel courseCodeLabel = new JLabel("Course Code:");
+        courseCodeLabel.setBounds(labelX, 60 + rowGap * 4, 120, height);
+        content.add(courseCodeLabel);
+
         JTextField courseCodeField = new JTextField();
-        courseCodeField.setBounds(150, 220, 200, 25);
-        add(courseCodeField);
-        
+        courseCodeField.setBounds(fieldX, 60 + rowGap * 4, width, height);
+        content.add(courseCodeField);
+
+        // Course Name
         JLabel courseNameLabel = new JLabel("Course Name:");
-        courseNameLabel.setBounds(20, 260, 120, 25);
-        add(courseNameLabel);
-        
+        courseNameLabel.setBounds(labelX, 60 + rowGap * 5, 120, height);
+        content.add(courseNameLabel);
+
         JTextField courseNameField = new JTextField();
-        courseNameField.setBounds(150, 260, 200, 25);
-        add(courseNameField);
-        
+        courseNameField.setBounds(fieldX, 60 + rowGap * 5, width, height);
+        content.add(courseNameField);
+
+        // Buttons
         JButton addButton = new JButton("ADD STUDENT");
-        addButton.setBounds(150, 310, 130, 30);
-        add(addButton);
+        addButton.setBounds(120, 320, 130, 30);
+        content.add(addButton);
         addButton.addActionListener(this);
 
-       
         JButton deleteButton = new JButton("DELETE STUDENT");
-        deleteButton.setBounds(290, 310, 135, 30);
-        add(deleteButton);
+        deleteButton.setBounds(260, 320, 140, 30);
+        content.add(deleteButton);
         deleteButton.addActionListener(this);
     }
 
@@ -83,4 +100,3 @@ public class StudentLogContainer extends WindowContainer implements ActionListen
         JOptionPane.showMessageDialog(this, "Student added successfully!");
     }
 }
-
