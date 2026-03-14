@@ -1,11 +1,14 @@
 package appproject.lib;
 
 import appproject.AppProject;
+import appproject.containers.*;
 
 import javax.swing.*;
 import javax.swing.event.MenuListener;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +23,7 @@ import java.util.ArrayList;
 public class AppWindow extends JFrame implements ContentUpdateListener {
 
     ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
-
+    JPanel mainContainer = new JPanel(new CardLayout());
     /**
      * <h5>AppWindow - INITIALIZATION</h5>
      * Sets up an application window.<br>
@@ -35,14 +38,17 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     public AppWindow(String title, int x, int y, int width, int height, boolean resizable) {
         setTitle(title);
         setResizable(resizable);
+        setLayout(null);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
         setBounds(x, y, width, height);
+        preloadContainers(width, height);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        debugPrintln("Successfully initialized window!", "INIT");
     }
 
     /**
@@ -56,6 +62,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     public AppWindow(String title, boolean resizable) {
         setTitle(title);
         setResizable(resizable);
+        setLayout(null);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -65,10 +72,28 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         int width = (int)(desktopWidth/1.25);
         int height = (int)(desktopHeight/1.25);
         setSize(width, height);
-        setLocationRelativeTo(null);
+        preloadContainers(width, height);
 
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        debugPrintln("Successfully initialized window!", "INIT");
+        debugPrintln("Listing all components of the JFrame (AppWindow), Checking...", "INIT");
+        Component[] comp = getContentPane().getComponents();
+        for (Component c : comp) {
+            debugPrintln("\t\t" + c.getClass().getName(), "INIT");
+        }
+    }
+
+    /**
+     * Preloads necessary containers (usually navigator containers). Internal function.<br>
+     */
+    void preloadContainers(int width, int height) {
+        mainContainer.add(new MainContainer(), "Dashboard");
+        mainContainer.add(new ClassesContainer(), "Classes");
+        mainContainer.add(new ThemesContainer(), "Themes");
+        setContentPane(mainContainer);
+        debugPrintln("Successfully preloaded containers!", "INIT");
     }
 
     /**
@@ -124,6 +149,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     /**
      * Shows the existing container as main pane. Will disable previous pane.<br>
      *
+     * @deprecated Use showContent() instead. This method is thread intensive.
      * @see javax.swing.JPanel
      * @param c Selected container to be shown.
      * @return The shown JPanel.
@@ -139,6 +165,17 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     }
 
     /**
+     * Shows the existing container. Will disable previous pane.<br>
+     *
+     * @param name Selected preloaded container with name to be shown.
+     */
+    public void showContent(String name) {
+        ((CardLayout)mainContainer.getLayout()).show(mainContainer, name);
+        refreshWindow();
+        debugPrintln("Shown content \"" + name + "\"", "UPDATE");
+    }
+
+    /**
      * Shows the existing container as a separate window or dialog.<br>
      *
      * @see javax.swing.JDialog
@@ -147,15 +184,13 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      * @param width The width of the dialog.
      * @param height The height of the dialog.
      * @param modal The mode of the dialog.
-     * @return The shown JDialog with the container.
      */
-    public JDialog showContentPaneAsDialog(WindowContainer c, String title, int width, int height, boolean modal) {
+    public void showContentPaneAsDialog(WindowContainer c, String title, int width, int height, boolean modal) {
         JDialog dialog = new JDialog(this, title, modal);
         dialog.setContentPane(c);
         dialog.setSize(width, height);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        return dialog;
     }
 
     /**
@@ -166,9 +201,16 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         repaint();
     }
 
+    /**
+     * Prints out a detailed console print. Static function. <br>
+     */
+    public static void debugPrintln(Object message, String type) {
+        System.out.println("[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy | HH:mm:ss")) + "]\t" + type.toUpperCase() + ": \t" + message);
+    }
+
     @Override
     public void contentPanelUpdatePerformed(ContentUpdateEvent e) {
-        System.out.println("Content was updated! " + e.getSource().getClass().getName());
+        debugPrintln("Content was updated! " + e.getSource().getClass().getName(), "UPDATE");
         refreshWindow();
     }
 }
