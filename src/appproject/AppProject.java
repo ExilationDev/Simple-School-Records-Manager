@@ -15,6 +15,7 @@ import appproject.lib.WindowContainer;
  * @see <a href="https://github.com/ExilationDev/CCE107-Group4Project">Github Project</a>
  * @author Ricky Guiloreza, Kristian Vinz Lizardo, Carl Francis Pacatang, Andre Quima, Jame Cris Yuson
  */
+  // hello
 public class AppProject {
     public static AppWindow window = new AppWindow("School Record Manager Application", true);
 
