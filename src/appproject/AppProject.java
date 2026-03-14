@@ -40,7 +40,7 @@ public class AppProject {
             window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 300, 300, true);
         });
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(1)).getItem(0).addActionListener((var e) -> {
-            window.showContentPaneAsDialog(new StudentLogContainer(), "Modify Table", 300, 300, true);
+            window.showContentPaneAsDialog(new StudentLogContainer(), "Modify Table", 450, 420, true);
         });
 
         window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Help"), new JMenuItem("About"), new JMenuItem("Exit"))));
