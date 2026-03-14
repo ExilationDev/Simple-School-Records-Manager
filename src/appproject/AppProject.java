@@ -33,8 +33,6 @@ public class AppProject {
         // Hello Carl
         // Hello guys
 
-        Toolkit.getDefaultToolkit().setDynamicLayout(false);
-
         // Menu Bar Setup
         window.setUpMenu("Edit", new ArrayList<>(List.of(window.setUpMenuInMenu("Record", new ArrayList<>(List.of(new JMenuItem("Insert"), new JMenuItem("Remove"), new JMenuItem("Change")))), window.setUpMenuInMenu("Table", new ArrayList<>(List.of(new JMenuItem("Modify"), new JMenuItem("Layout")))))));
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).addActionListener((var e) -> {
@@ -62,7 +60,5 @@ public class AppProject {
 
         //window.showContentPane(PreloadedContainers.MAIN_CONTAINER);
         window.showContent("Dashboard");
-        window.revalidate();
-        window.repaint();
     }
 }

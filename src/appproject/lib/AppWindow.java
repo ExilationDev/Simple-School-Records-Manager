@@ -44,7 +44,8 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         setJMenuBar(menuBar);
 
         setBounds(x, y, width, height);
-        preloadContainers(width, height);
+
+        preloadContainers();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -72,7 +73,8 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         int width = (int)(desktopWidth/1.25);
         int height = (int)(desktopHeight/1.25);
         setSize(width, height);
-        preloadContainers(width, height);
+
+        preloadContainers();
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,7 +90,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
     /**
      * Preloads necessary containers (usually navigator containers). Internal function.<br>
      */
-    void preloadContainers(int width, int height) {
+    void preloadContainers() {
         mainContainer.add(new MainContainer(), "Dashboard");
         mainContainer.add(new ClassesContainer(), "Classes");
         mainContainer.add(new ThemesContainer(), "Themes");
