@@ -2,12 +2,13 @@ package appproject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import appproject.containers.*;
 import appproject.lib.AppWindow;
-import appproject.lib.WindowContainer;
 
 /**
  * An application created by UMTC students.
@@ -35,10 +36,32 @@ public class AppProject {
         // Hello guys
 
         // Menu Bar Setup
-        window.setUpMenu("Edit", new ArrayList<>(List.of(window.setUpMenuInMenu("Record", new ArrayList<>(List.of(new JMenuItem("Insert"), new JMenuItem("Remove"), new JMenuItem("Change")))), window.setUpMenuInMenu("Table", new ArrayList<>(List.of(new JMenuItem("Modify"), new JMenuItem("Layout")))))));
+        window.setUpMenu("Edit", new ArrayList<>(List.of(
+                window.setUpMenuInMenu("Record", new ArrayList<>(List.of(
+                        new JMenuItem("Insert"),
+                        new JMenuItem("Remove"),
+                        new JMenuItem("Edit")
+                ))),
+                window.setUpMenuInMenu("Table", new ArrayList<>(List.of(
+                        new JMenuItem("Modify"),
+                        new JMenuItem("Layout")
+                ))))));
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).addActionListener((var e) -> {
-            window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 300, 300, true);
+            window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 475, 300, true);
+            JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Insert Record", JOptionPane.WARNING_MESSAGE);
         });
+        ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+        ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(1).addActionListener((var e) -> {
+            // window.showContentPaneAsDialog(new InsertContainer(), "Remove Record", 300, 300, true);
+            JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Remove Record", JOptionPane.WARNING_MESSAGE);
+        });
+        ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(1).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+        ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(2).addActionListener((var e) -> {
+            // window.showContentPaneAsDialog(new InsertContainer(), "Edit Record", 300, 300, true);
+            JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Edit Record", JOptionPane.WARNING_MESSAGE);
+        });
+        ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(2).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(1)).getItem(0).addActionListener((var e) -> {
             window.showContentPaneAsDialog(new StudentLogContainer(), "Modify Table", 450, 420, true);
         });
@@ -59,7 +82,9 @@ public class AppProject {
 
         window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
 
-        //window.showContentPane(PreloadedContainers.MAIN_CONTAINER);
         window.showContent("Dashboard");
+
+        // Always set minimum size to prevent GUI overlapping
+        window.setMinimumSize(new Dimension(700, 400));
     }
 }

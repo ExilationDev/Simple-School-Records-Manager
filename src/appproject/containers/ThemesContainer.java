@@ -51,6 +51,7 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
         scroll_pane.getViewport().setBackground(new Color(0,0,0,0));
         scroll_pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scroll_pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll_pane.setBorder(null);
 
         theme_label.setBounds(20, 10, 200, 30);
         theme_label.setFont(new Font(null, Font.PLAIN, 20));

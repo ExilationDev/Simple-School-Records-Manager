@@ -8,8 +8,7 @@ import appproject.containers.*;
 import appproject.lib.components.*;
 
 /**
- * Main window. Panel or navigation handler for layout design.
- * In development.
+ * Content and navigation handler for layout design.
  *
  * @see javax.swing.JPanel
  * @author ExilationDev (Kristian Vinz Lizardo)
@@ -83,10 +82,10 @@ public class WindowContainer extends JPanel {
     }
 
     /**
-     * Gets the Singleton navigator panel.
+     * Gets the navigator panel.
      *
      * @see JPanel
-     * @return The Singleton navigator.
+     * @return The navigator of the content panel.
      */
     public JPanel getNavigator() {
         if (navigator == null) {

@@ -2,6 +2,7 @@ package appproject.lib.components;
 
 import java.awt.*;
 import appproject.AppProject;
+import appproject.lib.AppWindow;
 
 public class ColorTheme {
     // Standard Theme (Default)
@@ -26,7 +27,7 @@ public class ColorTheme {
     }
 
     public static void ChangeTheme(Themes theme) {
-        System.out.println(theme);
+        AppWindow.debugPrintln("Changing theme to " + theme, "UPDATE");
         switch (theme) {
             case DEFAULT -> {
                 NAVPANEL_DEFAULT = new Color(37, 46, 54);

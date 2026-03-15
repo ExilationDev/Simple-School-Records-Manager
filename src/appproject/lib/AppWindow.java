@@ -22,8 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class AppWindow extends JFrame implements ContentUpdateListener {
 
-    ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
-    JPanel mainContainer = new JPanel(new CardLayout());
+    private ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
+    private JPanel mainContainer = new JPanel(new CardLayout());
+
     /**
      * <h5>AppWindow - INITIALIZATION</h5>
      * Sets up an application window.<br>
@@ -175,6 +176,19 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         ((CardLayout)mainContainer.getLayout()).show(mainContainer, name);
         refreshWindow();
         debugPrintln("Shown content \"" + name + "\"", "UPDATE");
+    }
+
+    /**
+     * Gets the current content from the mainContainer.
+     *
+     * @see JPanel
+     * @return The current <i>visible</i> content from the mainContainer.
+     */
+    public JPanel getCurrentContent() {
+        for (Component c : mainContainer.getComponents()) {
+            if (c.isVisible()) return (JPanel)c;
+        }
+        return null;
     }
 
     /**
