@@ -5,74 +5,188 @@ import appproject.lib.WindowContainer;
 import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class ClassesContainer extends WindowContainer implements ActionListener {
-    // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
+
+    JPanel navigator;
+    JPanel content;
+
+    JButton addBtn;
+    JButton deleteBtn;
+    JButton updateBtn;
+    JButton saveBtn;
+
+    JPanel formPanel;
+
+    JTextField codefield;
+    JTextField classField;
+    JTextField namefield;
+    JTextField unitsField;
+
     JLabel classes_label = new JLabel("Classes");
     JButton classes_info_btn = new JButton("Check Info");
 
-    // Model Data Types
-    // int code, String class, String name, Programs program, double units, *reserved for buttons about full description*
-    public TableModel table_model = new DefaultTableModel(new Object[][]
-            {
+    int selectedRow = -1;
+
+    public static DefaultTableModel table_model = new DefaultTableModel(
+            new Object[][]{
                     {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0},
-                    {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0},
-                    {4408, "CCE 107", "Intermediate Programming", ClassesData.Programs.BSCS, 3.0}
+                    {4409, "CCE 108", "Object Oriented Programming", ClassesData.Programs.BSCS, 3.0},
+                    {4410, "CCE 109", "Data Structures", ClassesData.Programs.BSCS, 3.0}
             },
             new String[]{"Code", "Class", "Name", "Program", "Units"}
-    ) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
+    ){
+        public boolean isCellEditable(int row, int column){
             return false;
         }
     };
-    public JTable classes_table = new JTable(table_model);
 
-    // This constructor is an equivalent method to the main() method of AppProject.
-    public ClassesContainer() {
+    public static JTable classes_table = new JTable(table_model);
+
+    public JPanel setUpFormPanel(){
+
+        formPanel = new JPanel();
+        formPanel.setLayout(null);
+        formPanel.setBounds(650,50,250,300);
+
+        codefield = new JTextField();
+        classField = new JTextField();
+        namefield = new JTextField();
+        unitsField = new JTextField();
+
+        saveBtn = new JButton("Save");
+        saveBtn.addActionListener(this);
+
+        codefield.setBounds(20,20,200,25);
+        classField.setBounds(20,60,200,25);
+        namefield.setBounds(20,100,200,25);
+        unitsField.setBounds(20,140,200,25);
+        saveBtn.setBounds(70,210,100,30);
+
+        formPanel.add(codefield);
+        formPanel.add(classField);
+        formPanel.add(namefield);
+        formPanel.add(unitsField);
+        formPanel.add(saveBtn);
+
+        content.add(formPanel);
+        formPanel.setVisible(false);
+
+        return formPanel;
+    }
+
+    public ClassesContainer(){
+
+        super();
+
         setLayout(new BorderLayout());
+navigator = getNavigator();
+content = getContent();
 
-        add(getNavigator(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+     add(navigator, BorderLayout.WEST);
+     add(content, BorderLayout.CENTER);
 
-        // Put content GUI code here
-        // Make sure you use the content variable whenever you add components!
-        classes_label.setBounds(20, 20, 100, 20);
-        classes_label.setFont(new Font(null, Font.PLAIN, 20));
-        getContent().add(classes_label);
+        content.setLayout(null);
 
-        JScrollPane table_scroll_pane = new JScrollPane(classes_table);
-        table_scroll_pane.setBounds(35, 50, 600, 300);
-        classes_table.setColumnSelectionAllowed(false);
-        classes_table.setRowSelectionAllowed(true);
-        classes_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        classes_table.getColumn("Code").setPreferredWidth(30);
-        classes_table.getColumn("Class").setPreferredWidth(60);
-        classes_table.getColumn("Name").setPreferredWidth(300);
-        classes_table.getColumn("Program").setPreferredWidth(50);
-        classes_table.getColumn("Units").setPreferredWidth(25);
-        getContent().add(table_scroll_pane);
+        addBtn = new JButton("Add");
+        addBtn.addActionListener(this);
+        addBtn.setBounds(350,360,100,25);
+        content.add(addBtn);
 
-        classes_info_btn.setBounds(35, 360, 100, 20);
-        getContent().add(classes_info_btn);
+        deleteBtn = new JButton("Delete");
+        deleteBtn.addActionListener(this);
+        deleteBtn.setBounds(245,360,100,25);
+        content.add(deleteBtn);
+
+        updateBtn = new JButton("Update");
+        updateBtn.addActionListener(this);
+        updateBtn.setBounds(140,360,100,25);
+        content.add(updateBtn);
+
+        setUpFormPanel();
+
+        classes_label.setBounds(20,20,200,30);
+        classes_label.setFont(new Font(null,Font.PLAIN,20));
+        content.add(classes_label);
+
+        JScrollPane scroll = new JScrollPane(classes_table);
+        scroll.setBounds(35,50,600,300);
+        content.add(scroll);
+
+        classes_info_btn.setBounds(35,360,100,25);
+        content.add(classes_info_btn);
 
         setVisible(true);
     }
 
-    // repaint function. Put setForegrounds of your JComponent here
-    @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
         classes_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
     }
 
-    // Put any functionalities here acquired from doing an action event from any action listener in this container.
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
 
+        DefaultTableModel model = (DefaultTableModel) classes_table.getModel();
+
+        if(e.getSource()==addBtn){
+
+            selectedRow = -1;
+
+            codefield.setText("");
+            classField.setText("");
+            namefield.setText("");
+            unitsField.setText("");
+
+            formPanel.setVisible(true);
+        }
+
+        else if(e.getSource()==deleteBtn){
+
+            int row = classes_table.getSelectedRow();
+
+            if(row!=-1){
+                model.removeRow(row);
+            }
+        }
+
+        else if(e.getSource()==updateBtn){
+
+            selectedRow = classes_table.getSelectedRow();
+
+            if(selectedRow!=-1){
+
+                codefield.setText(model.getValueAt(selectedRow,0).toString());
+                classField.setText(model.getValueAt(selectedRow,1).toString());
+                namefield.setText(model.getValueAt(selectedRow,2).toString());
+                unitsField.setText(model.getValueAt(selectedRow,4).toString());
+
+                formPanel.setVisible(true);
+            }
+        }
+
+        else if(e.getSource()==saveBtn){
+
+            String code = codefield.getText();
+            String className = classField.getText();
+            String name = namefield.getText();
+            double units = Double.parseDouble(unitsField.getText());
+
+            if(selectedRow==-1){
+
+                model.addRow(new Object[]{code,className,name,ClassesData.Programs.BSCS,units});
+
+            }else{
+
+                model.setValueAt(code,selectedRow,0);
+                model.setValueAt(className,selectedRow,1);
+                model.setValueAt(name,selectedRow,2);
+                model.setValueAt(units,selectedRow,4);
+            }
+
+            formPanel.setVisible(false);
+        }
     }
 }
