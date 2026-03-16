@@ -93,6 +93,7 @@ public class AppWindow extends JFrame {
         mainContainer.add(new MainContainer(), "Dashboard");
         mainContainer.add(new ClassesContainer(), "Classes");
         mainContainer.add(new ThemesContainer(), "Themes");
+        mainContainer.add(new StudentContainer(), "Students");
         setContentPane(mainContainer);
         debugPrintln("Successfully preloaded containers!", "INIT");
     }

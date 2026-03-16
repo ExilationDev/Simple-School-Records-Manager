@@ -60,6 +60,7 @@ public class WindowContainer extends JPanel {
         students_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(students_btn);
         students_btn.addActionListener((var e) -> {
+            AppProject.window.showContent("Students");
             // AppProject.window.showContentPane(new HelpContainer());
         });
         NavLabel setting_label = new NavLabel("Settings", ColorTheme.NAVPANEL_FONT_COLOR);
