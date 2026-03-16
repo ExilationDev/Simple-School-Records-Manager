@@ -9,6 +9,7 @@ import java.util.List;
 
 import appproject.containers.*;
 import appproject.lib.AppWindow;
+import appproject.lib.WindowContainer;
 
 /**
  * An application created by UMTC students.
@@ -47,7 +48,15 @@ public class AppProject {
                         new JMenuItem("Layout")
                 ))))));
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).addActionListener((var e) -> {
-            window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 475, 300, true);
+            for (Component c : ((WindowContainer)window.getCurrentContent()).getContent().getComponents()) {
+                // System.out.println(c);
+                if (!(c instanceof JScrollPane)) { continue; }
+                Component view = ((JScrollPane)c).getViewport().getView();
+                if (view instanceof JTable) {
+                    window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 475, 400, true);
+                    return;
+                }
+            }
             JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Insert Record", JOptionPane.WARNING_MESSAGE);
         });
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));

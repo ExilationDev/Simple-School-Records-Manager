@@ -60,7 +60,7 @@ public class WindowContainer extends JPanel {
         students_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         navigator.add(students_btn);
         students_btn.addActionListener((var e) -> {
-            AppProject.window.showContentPane(new HelpContainer());
+            // AppProject.window.showContentPane(new HelpContainer());
         });
         NavLabel setting_label = new NavLabel("Settings", ColorTheme.NAVPANEL_FONT_COLOR);
         setting_label.setMaximumSize(new Dimension(Integer.MAX_VALUE, setting_label.getMinimumSize().height + 20));
@@ -135,34 +135,5 @@ public class WindowContainer extends JPanel {
         if (navigator != null) navigator.setBackground(ColorTheme.NAVPANEL_DEFAULT);
         content.setBackground(ColorTheme.CONTENT_DEFAULT);
         AppWindow.debugPrintln("Repainting " + getClass().getName() + "...", "UPDATE");
-    }
-}
-
-interface ContentUpdateListener extends EventListener {
-    public void contentPanelUpdatePerformed(ContentUpdateEvent e);
-}
-
-class ContentUpdateEvent extends EventObject {
-    public ContentUpdateEvent(Object source) {
-        super(source);
-    }
-}
-
-class ContentUpdateSource {
-    final java.util.List<ContentUpdateListener> listeners = new ArrayList<>();
-
-    public void addContentUpdateListener(ContentUpdateListener l) {
-        listeners.add(l);
-    }
-
-    public void removeContentUpdateListener(ContentUpdateListener l) {
-        listeners.remove(l);
-    }
-
-    public void invokeEvent() {
-        ContentUpdateEvent event = new ContentUpdateEvent(this);
-        for (var i : listeners) {
-            i.contentPanelUpdatePerformed(event);
-        }
     }
 }

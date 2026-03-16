@@ -8,6 +8,5 @@ public record ClassData(
         String class_name,
         Programs program,
         double units,
-        String description,
-        ArrayList<ClassData> prerequisites
+        String description
 ) {}

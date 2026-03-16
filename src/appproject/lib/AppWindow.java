@@ -20,10 +20,8 @@ import java.util.ArrayList;
  * @author ExilationDev (Kristian Vinz Lizardo)
  */
 @SuppressWarnings("unused")
-public class AppWindow extends JFrame implements ContentUpdateListener {
-
-    private ContentUpdateSource contentUpdateSource = new ContentUpdateSource();
-    private JPanel mainContainer = new JPanel(new CardLayout());
+public class AppWindow extends JFrame {
+    private final JPanel mainContainer = new JPanel(new CardLayout());
 
     /**
      * <h5>AppWindow - INITIALIZATION</h5>
@@ -108,7 +106,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      */
     public void setUpMenu(String label, ArrayList<JMenuItem> items) {
         JMenu menu = new JMenu(label);
-        if (items != null) items.forEach((var item) -> menu.add(item));
+        if (items != null) items.forEach(menu::add);
         getJMenuBar().add(menu);
         refreshWindow();
     }
@@ -122,7 +120,7 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      */
     public JMenu setUpMenuInMenu(String label, ArrayList<JMenuItem> items) {
         JMenu menu = new JMenu(label);
-        if (items != null) items.forEach((var item) -> menu.add(item));
+        if (items != null) items.forEach(menu::add);
         refreshWindow();
         return menu;
     }
@@ -161,9 +159,6 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
         // System.out.println(getContentPane().getName());
         if (c == getContentPane()) return null;
         setContentPane(c);
-        contentUpdateSource.addContentUpdateListener(AppProject.window);
-        contentUpdateSource.invokeEvent();
-        contentUpdateSource.removeContentUpdateListener(AppProject.window);
         return (WindowContainer)getContentPane();
     }
 
@@ -222,11 +217,5 @@ public class AppWindow extends JFrame implements ContentUpdateListener {
      */
     public static void debugPrintln(Object message, String type) {
         System.out.println("[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy | HH:mm:ss")) + "]\t" + type.toUpperCase() + ": \t" + message);
-    }
-
-    @Override
-    public void contentPanelUpdatePerformed(ContentUpdateEvent e) {
-        debugPrintln("Content was updated! " + e.getSource().getClass().getName(), "UPDATE");
-        refreshWindow();
     }
 }

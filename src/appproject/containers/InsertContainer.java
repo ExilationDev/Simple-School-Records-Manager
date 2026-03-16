@@ -1,5 +1,6 @@
 package appproject.containers;
 
+import appproject.lib.ClassData;
 import appproject.lib.Programs;
 import appproject.lib.WindowContainer;
 import appproject.lib.components.ColorTheme;
@@ -8,12 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class InsertContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
     JLabel insert_label = new JLabel("Insert Record");
     JLabel code_label = new JLabel("Code");
-    JTextField code_field = new JTextField();
+    JSpinner code_field = new JSpinner(new SpinnerNumberModel(1000, 1000, 9999, 1));
     JLabel class_title_label = new JLabel("Class Title");
     JTextField class_title_field = new JTextField();
     JLabel class_name_label = new JLabel("Class Name");
@@ -21,7 +23,9 @@ public class InsertContainer extends WindowContainer implements ActionListener {
     JLabel program_label = new JLabel("Program");
     JComboBox<Programs> program_dropdown = new JComboBox<>();
     JLabel units_label = new JLabel("Units");
-    JTextField units_field = new JTextField();
+    JSpinner units_field = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10.0, 0.5));
+    JLabel description_label = new JLabel("Class Description");
+    JTextArea description_field = new JTextArea();
     JButton insert_btn = new JButton("Insert Data");
 
     // This constructor is an equivalent method to the main() method of AppProject.
@@ -30,11 +34,21 @@ public class InsertContainer extends WindowContainer implements ActionListener {
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!
+        setUpClassesGUI();
+
+        add(new JPanel(), BorderLayout.WEST);
+        add(getContent(), BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    void setUpClassesGUI() {
         insert_label.setBounds(20, 10, 200, 30);
         insert_label.setFont(new Font(null, Font.PLAIN, 20));
 
         code_label.setBounds(35, 50, 200, 20);
         code_field.setBounds(235, 50, 200, 20);
+        code_field.setEditor(new JSpinner.NumberEditor(code_field, "#"));
 
         class_title_label.setBounds(35, 80, 200, 20);
         class_title_field.setBounds(235, 80, 200, 20);
@@ -53,7 +67,12 @@ public class InsertContainer extends WindowContainer implements ActionListener {
         units_label.setBounds(35, 170, 200, 20);
         units_field.setBounds(235, 170, 200, 20);
 
-        insert_btn.setBounds(35, 220, 200, 30);
+        description_label.setBounds(35, 200, 200, 20);
+        description_field.setLineWrap(true);
+        JScrollPane description_scroll_pane = new JScrollPane(description_field);
+        description_scroll_pane.setBounds(235, 200, 200, 100);
+
+        insert_btn.setBounds(35, 320, 200, 30);
         insert_btn.addActionListener(this);
 
         getContent().add(insert_label);
@@ -67,12 +86,9 @@ public class InsertContainer extends WindowContainer implements ActionListener {
         getContent().add(program_dropdown);
         getContent().add(units_label);
         getContent().add(units_field);
+        getContent().add(description_label);
+        getContent().add(description_scroll_pane);
         getContent().add(insert_btn);
-
-        add(new JPanel(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
-
-        setVisible(true);
     }
 
     // repaint function. Put setForegrounds of your JComponent here
