@@ -1,102 +1,111 @@
 package appproject.containers;
 
 import appproject.lib.WindowContainer;
+import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// *author Carl Francis F. Pacatang
+// Container used to add or delete student records.
+// only handles the UI for now. Actual Student Login Information 
+// will be connected once the Student class is finished.
+
 public class StudentLogContainer extends WindowContainer implements ActionListener {
+    //Localizing Variables for components in the container
+    JLabel title = new JLabel();
+    JLabel idLabel = new JLabel();
+    JLabel firstNameLabel = new JLabel();
+    JLabel lastNameLabel = new JLabel();
+    JLabel ageLabel = new JLabel();
+
+    // Input fields
+    JTextField idField = new JTextField();
+    JTextField firstNameField = new JTextField();
+    JTextField lastNameField = new JTextField();
+    JTextField ageField = new JTextField();
+
+    // Buttons
+    JButton addButton = new JButton("ADD STUDENT");
+    JButton deleteButton = new JButton("DELETE STUDENT");
 
     public StudentLogContainer() {
 
+        // Get the content panel from WindowContainer
         JPanel content = getContent();
         content.setLayout(null);
-
+        
+        
         setLayout(new BorderLayout());
+        
         add(content, BorderLayout.CENTER);
 
-        int labelX = 30;
-        int fieldX = 150;
-        int width = 210;
-        int height = 25;
-        int rowGap = 40;
-
         // Title
-        JLabel title = new JLabel("STUDENT INFORMATION");
-        title.setFont(new Font("Arial", Font.BOLD, 16));
-        title.setBounds(80, 20, 250, 30);
+        title.setText("STUDENT INFORMATION");
+        title.setFont(new Font("Arial", Font.BOLD, 18));
+        title.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        title.setBounds(90, 20, 250, 30);
         content.add(title);
 
         // Student ID
-        JLabel nameLabel = new JLabel("Student ID:");
-        nameLabel.setBounds(labelX, 60, 120, height);
-        content.add(nameLabel);
+        idLabel.setText("Student ID:");
+        idLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        idLabel.setBounds(40, 80, 120, 25);
+        content.add(idLabel);
 
-        JTextField idField = new JTextField();
-        idField.setBounds(fieldX, 60, width, height);
+        idField.setBounds(160, 80, 200, 25);
         content.add(idField);
 
-        // First Name
-        JLabel firstNameLabel = new JLabel("First Name:");
-        firstNameLabel.setBounds(labelX, 60 + rowGap, 120, height);
+        // First name
+        firstNameLabel.setText("First Name:");
+        firstNameLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        firstNameLabel.setBounds(40, 120, 120, 25);
         content.add(firstNameLabel);
 
-        JTextField firstNameField = new JTextField();
-        firstNameField.setBounds(fieldX, 60 + rowGap, width, height);
+        firstNameField.setBounds(160, 120, 200, 25);
         content.add(firstNameField);
 
-        // Last Name
-        JLabel lastNameLabel = new JLabel("Last Name:");
-        lastNameLabel.setBounds(labelX, 60 + rowGap * 2, 120, height);
+        // Last name
+        lastNameLabel.setText("Last Name:");
+        lastNameLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        lastNameLabel.setBounds(40, 160, 120, 25);
         content.add(lastNameLabel);
 
-        JTextField lastNameField = new JTextField();
-        lastNameField.setBounds(fieldX, 60 + rowGap * 2, width, height);
+        lastNameField.setBounds(160, 160, 200, 25);
         content.add(lastNameField);
 
         // Age
-        JLabel ageLabel = new JLabel("Age:");
-        ageLabel.setBounds(labelX, 60 + rowGap * 3, 120, height);
+        ageLabel.setText("Age:");
+        ageLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        ageLabel.setBounds(40, 200, 120, 25);
         content.add(ageLabel);
 
-        JTextField ageField = new JTextField();
-        ageField.setBounds(fieldX, 60 + rowGap * 3, width, height);
+        ageField.setBounds(160, 200, 200, 25);
         content.add(ageField);
 
-        // Course Code
-        JLabel courseCodeLabel = new JLabel("Course Code:");
-        courseCodeLabel.setBounds(labelX, 60 + rowGap * 4, 120, height);
-        content.add(courseCodeLabel);
-
-        JTextField courseCodeField = new JTextField();
-        courseCodeField.setBounds(fieldX, 60 + rowGap * 4, width, height);
-        content.add(courseCodeField);
-
-        // Course Name
-        JLabel courseNameLabel = new JLabel("Course Name:");
-        courseNameLabel.setBounds(labelX, 60 + rowGap * 5, 120, height);
-        content.add(courseNameLabel);
-
-        JTextField courseNameField = new JTextField();
-        courseNameField.setBounds(fieldX, 60 + rowGap * 5, width, height);
-        content.add(courseNameField);
-
-        // Buttons
-        JButton addButton = new JButton("ADD STUDENT");
-        addButton.setBounds(120, 320, 130, 30);
-        content.add(addButton);
+        // Add student button
+        addButton.setBounds(90, 270, 140, 35);
         addButton.addActionListener(this);
+        content.add(addButton);
 
-        JButton deleteButton = new JButton("DELETE STUDENT");
-        deleteButton.setBounds(260, 320, 140, 30);
-        content.add(deleteButton);
+        // Delete student button
+        deleteButton.setBounds(240, 270, 140, 35);
         deleteButton.addActionListener(this);
+        content.add(deleteButton);
     }
-
+    
+    // Handles button clicks
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(this, "Student added successfully!");
+
+        if (e.getSource() == addButton) {
+            JOptionPane.showMessageDialog(this, "Student added successfully!");
+        }
+
+        if (e.getSource() == deleteButton) {
+            JOptionPane.showMessageDialog(this, "Student deleted successfully!");
+        }
     }
 }
