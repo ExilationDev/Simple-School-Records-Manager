@@ -95,6 +95,21 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(addBtn)) {
             AppProject.window.showContentPaneAsDialog(new InsertContainer(classes_table), "Insert Record", 475, 400, true);
+        } else if (e.getSource().equals(deleteBtn)) {
+            int row = classes_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(AppProject.window, "Cannot get selected record. Did you select a record or item from the database?", "Remove Record", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int res = JOptionPane.showConfirmDialog(AppProject.window, "Do you want to remove the record that you selected? This action cannot be undone.", "Remove Record", JOptionPane.YES_NO_OPTION);
+            if (res == 0) ((ClassRecordTableModel)classes_table.getModel()).removeRecord(row);
+        } else if (e.getSource().equals(updateBtn)) {
+            int row = classes_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(AppProject.window, "Cannot get selected record. Did you select a record or item from the database?", "Remove Record", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            AppProject.window.showContentPaneAsDialog(new UpdateContainer(classes_table), "Update Record", 475, 400, true);
         }
     }
 }

@@ -1,6 +1,7 @@
 package appproject;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import appproject.containers.*;
 import appproject.lib.AppWindow;
+import appproject.lib.ClassRecordTableModel;
 import appproject.lib.WindowContainer;
 
 /**
@@ -41,7 +43,7 @@ public class AppProject {
                 window.setUpMenuInMenu("Record", new ArrayList<>(List.of(
                         new JMenuItem("Insert"),
                         new JMenuItem("Remove"),
-                        new JMenuItem("Edit")
+                        new JMenuItem("Update")
                 ))),
                 window.setUpMenuInMenu("Table", new ArrayList<>(List.of(
                         new JMenuItem("Modify"),
@@ -62,12 +64,40 @@ public class AppProject {
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(0).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(1).addActionListener((var e) -> {
             // window.showContentPaneAsDialog(new InsertContainer(), "Remove Record", 300, 300, true);
+            for (Component c : ((WindowContainer)window.getCurrentContent()).getContent().getComponents()) {
+                // System.out.println(c);
+                if (!(c instanceof JScrollPane)) { continue; }
+                Component view = ((JScrollPane)c).getViewport().getView();
+                if (view instanceof JTable) {
+                    int row = ((JTable)view).getSelectedRow();
+                    if (row == -1) {
+                        JOptionPane.showMessageDialog(window, "Cannot get selected record. Did you select a record or item from the database?", "Remove Record", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    int res = JOptionPane.showConfirmDialog(window, "Do you want to remove the record that you selected? This action cannot be undone.", "Remove Record", JOptionPane.YES_NO_OPTION);
+                    if (res == 0) ((ClassRecordTableModel)((JTable)view).getModel()).removeRecord(row);
+                    return;
+                }
+            }
             JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Remove Record", JOptionPane.WARNING_MESSAGE);
         });
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(1).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(2).addActionListener((var e) -> {
-            // window.showContentPaneAsDialog(new InsertContainer(), "Edit Record", 300, 300, true);
-            JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Edit Record", JOptionPane.WARNING_MESSAGE);
+            for (Component c : ((WindowContainer)window.getCurrentContent()).getContent().getComponents()) {
+                // System.out.println(c);
+                if (!(c instanceof JScrollPane)) { continue; }
+                Component view = ((JScrollPane)c).getViewport().getView();
+                if (view instanceof JTable) {
+                    int row = ((JTable)view).getSelectedRow();
+                    if (row == -1) {
+                        JOptionPane.showMessageDialog(window, "Cannot get selected record. Did you select a record or item from the database?", "Remove Record", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    AppProject.window.showContentPaneAsDialog(new UpdateContainer(((JTable)view)), "Update Record", 475, 400, true);
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Update Record", JOptionPane.WARNING_MESSAGE);
         });
         ((JMenu) window.getJMenuBar().getMenu(0).getItem(0)).getItem(2).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 

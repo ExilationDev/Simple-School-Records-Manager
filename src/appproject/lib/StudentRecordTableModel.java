@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class StudentRecordTableModel extends AbstractTableModel {
     private final ArrayList<StudentData> records;
-    private final String[] columnNames = {"Full Name", "Age", "Program", "Scholarship Status"};
+    private final String[] columnNames = {"Student Id", "Full Name", "Age", "Program", "Scholarship Status"};
 
     public StudentRecordTableModel(ArrayList<StudentData> records) {
         this.records = records;
@@ -30,10 +30,11 @@ public class StudentRecordTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         StudentData record = records.get(rowIndex);
         return switch (columnIndex) {
-            case 0 -> record.fullName();
-            case 1 -> record.age();
-            case 2 -> record.program();
-            case 3 -> record.isScholar();
+            case 0 -> record.id();
+            case 1 -> record.fullName();
+            case 2 -> record.age();
+            case 3 -> record.program();
+            case 4 -> record.isScholar();
             default -> null;
         };
     }

@@ -2,5 +2,5 @@ package appproject.lib;
 
 import java.util.ArrayList;
 
-public record StudentData(String fullName, int age, String address, Programs program, boolean isScholar) {
+public record StudentData(int id, String fullName, int age, String address, Programs program, boolean isScholar) {
 }
