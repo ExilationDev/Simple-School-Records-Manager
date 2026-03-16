@@ -1,8 +1,7 @@
 package appproject.containers;
 
-import appproject.lib.ClassData;
-import appproject.lib.Programs;
-import appproject.lib.WindowContainer;
+import appproject.AppProject;
+import appproject.lib.*;
 import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
@@ -14,26 +13,29 @@ import java.util.ArrayList;
 public class InsertContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
     JLabel insert_label = new JLabel("Insert Record");
-    JLabel code_label = new JLabel("Code");
+    JLabel code_label = new JLabel("Code*");
     JSpinner code_field = new JSpinner(new SpinnerNumberModel(1000, 1000, 9999, 1));
-    JLabel class_title_label = new JLabel("Class Title");
+    JLabel class_title_label = new JLabel("Class Title*");
     JTextField class_title_field = new JTextField();
-    JLabel class_name_label = new JLabel("Class Name");
+    JLabel class_name_label = new JLabel("Class Name*");
     JTextField class_name_field = new JTextField();
-    JLabel program_label = new JLabel("Program");
+    JLabel program_label = new JLabel("Program*");
     JComboBox<Programs> program_dropdown = new JComboBox<>();
-    JLabel units_label = new JLabel("Units");
+    JLabel units_label = new JLabel("Units*");
     JSpinner units_field = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10.0, 0.5));
     JLabel description_label = new JLabel("Class Description");
     JTextArea description_field = new JTextArea();
     JButton insert_btn = new JButton("Insert Data");
 
+    JTable table;
+
     // This constructor is an equivalent method to the main() method of AppProject.
-    public InsertContainer() {
+    public InsertContainer(JTable table) {
         setLayout(new BorderLayout());
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!
+        this.table = table;
         setUpClassesGUI();
 
         add(new JPanel(), BorderLayout.WEST);
@@ -102,11 +104,22 @@ public class InsertContainer extends WindowContainer implements ActionListener {
         class_name_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         program_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         units_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        description_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
     }
 
     // Put any functionalities here acquired from doing an action event from any action listener in this container.
     @Override
     public void actionPerformed(ActionEvent e) {
+        for (Component c : getContent().getComponents()) {
+            if (!(c instanceof JTextField)) continue;
+            if (!((JTextField)c).getText().trim().isEmpty()) continue;
+            JOptionPane.showMessageDialog(this, "One or more required fields are empty. Please check your inputs and try again.", "Insert Record", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
+        ClassData data = new ClassData((int)code_field.getValue(), class_title_field.getText(), class_name_field.getText(), (Programs)program_dropdown.getSelectedItem(), (double)units_field.getValue(), description_field.getText());
+        AppWindow.debugPrintln(data, "MESSAGE");
+        ((ClassRecordTableModel)table.getModel()).addRecord(data);
+        SwingUtilities.getWindowAncestor(this).dispose();
     }
 }

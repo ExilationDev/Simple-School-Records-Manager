@@ -53,7 +53,7 @@ public class AppProject {
                 if (!(c instanceof JScrollPane)) { continue; }
                 Component view = ((JScrollPane)c).getViewport().getView();
                 if (view instanceof JTable) {
-                    window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 475, 400, true);
+                    window.showContentPaneAsDialog(new InsertContainer((JTable)view), "Insert Record", 475, 400, true);
                     return;
                 }
             }

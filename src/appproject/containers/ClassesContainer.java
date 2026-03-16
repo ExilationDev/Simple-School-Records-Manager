@@ -93,10 +93,8 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent e) {
-        DefaultTableModel model = (DefaultTableModel) classes_table.getModel();
-
         if (e.getSource().equals(addBtn)) {
-            AppProject.window.showContentPaneAsDialog(new InsertContainer(), "Insert Record", 475, 400, true);
+            AppProject.window.showContentPaneAsDialog(new InsertContainer(classes_table), "Insert Record", 475, 400, true);
         }
     }
 }

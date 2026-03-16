@@ -39,6 +39,11 @@ public class ClassRecordTableModel extends AbstractTableModel {
         };
     }
 
+    public void addRecord(ClassData record) {
+        records.add(record);
+        fireTableRowsInserted(records.size() - 1, records.size() - 1);
+    }
+
     @Override
     public boolean isCellEditable(int row, int col) {
         return false;
