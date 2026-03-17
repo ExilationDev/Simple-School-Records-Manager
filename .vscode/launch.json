@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AppProject",
+            "request": "launch",
+            "mainClass": "appproject.AppProject",
+            "projectName": "CCE107-Group4Project_812b8994"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

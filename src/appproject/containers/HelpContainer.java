@@ -33,7 +33,7 @@ public class HelpContainer extends WindowContainer implements ActionListener {
         JPanel panel = new JPanel(new BorderLayout());
 
         JLabel title = new JLabel("School Record Manager - Help", JLabel.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 18));
+        title.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         JTextArea helpText = new JTextArea();
         helpText.setEditable(false);
@@ -53,6 +53,9 @@ public class HelpContainer extends WindowContainer implements ActionListener {
             "- Use the menu to navigate between sections."
         );
 
+        // Change font
+        helpText.setFont(new Font("Roboto", Font.PLAIN, 15));
+       
         JScrollPane scroll = new JScrollPane(helpText);
 
         panel.add(title, BorderLayout.NORTH);
