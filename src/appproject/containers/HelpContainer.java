@@ -20,6 +20,7 @@ public class HelpContainer extends WindowContainer implements ActionListener {
 // This constructor is an equivalent method to the main() method of AppProject.
    
     public HelpContainer() {
+        // calls the parent class constructor
         super();
         setLayout(new BorderLayout());
         setSize(1000, 700);
@@ -30,15 +31,18 @@ public class HelpContainer extends WindowContainer implements ActionListener {
 
     // Help UI
     private JPanel setUpContent() {
+        //This method creates and returns the main panel of the Help screen.
         JPanel panel = new JPanel(new BorderLayout());
 
         JLabel title = new JLabel("School Record Manager - Help", JLabel.CENTER);
         title.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         JTextArea helpText = new JTextArea();
+        //This is where all instructions are displayed.
         helpText.setEditable(false);
         helpText.setLineWrap(true);
         helpText.setWrapStyleWord(true);
+        
 
         helpText.setText(
             "Welcome to the School Record Manager Help Section.\n\n" +
