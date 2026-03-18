@@ -1,14 +1,11 @@
 package appproject.containers;
 
 import appproject.AppProject;
-import appproject.lib.StudentData;
-import appproject.lib.StudentRecordTableModel;
-import appproject.lib.Programs;
-import appproject.lib.WindowContainer;
+import appproject.containers.students.InsertContainer;
+import appproject.lib.*;
 import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -18,22 +15,17 @@ public class StudentContainer extends WindowContainer implements ActionListener 
     JPanel navigator;
     JPanel content;
 
-    JPanel formPanel;
-
-    JTextField fulnamefield;
-    JTextField ageField;
-    JTextField ischolarField;
-
     JLabel student_label = new JLabel("Student");
     JButton student_info_btn = new JButton("Check Info");
-    JButton addBtn = new JButton("Insert");
-    JButton deleteBtn = new JButton("Delete");
-    JButton updateBtn = new JButton("Update");
+    JButton add_btn = new JButton("Insert");
+    JButton delete_btn = new JButton("Delete");
+    JButton update_btn = new JButton("Update");
 
     int selectedRow = -1;
 
     public ArrayList<StudentData> list = new ArrayList<>(java.util.List.of(
-            new StudentData(152745,"Carl pacatang", 18,"Tagum City", Programs.BSCS,true)
+            new StudentData(152745,"Carl Francis Pacatang", 18,"Tagum City", Programs.BSCS,false),
+            new StudentData(152710,"Kristian Vinz Lizardo", 19,"Tagum City", Programs.BSCS,false)
     ));
     StudentRecordTableModel model = new StudentRecordTableModel(list);
 
@@ -54,27 +46,28 @@ public class StudentContainer extends WindowContainer implements ActionListener 
         student_label.setFont(new Font(null, Font.PLAIN, 20));
         content.add(student_label);
 
-        student_table.getColumn("Full Name").setPreferredWidth(30);
-        student_table.getColumn("Age").setPreferredWidth(60);
-        student_table.getColumn("Program").setPreferredWidth(50);
-        student_table.getColumn("Scholarship Status").setPreferredWidth(50);
+        student_table.getColumn("Student ID").setPreferredWidth(40);
+        student_table.getColumn("Full Name").setPreferredWidth(350);
+        student_table.getColumn("Age").setPreferredWidth(20);
+        student_table.getColumn("Program").setPreferredWidth(40);
+        student_table.getColumn("Scholarship Status").setPreferredWidth(70);
         scroll.setBounds(35, 50, 600, 300);
         content.add(scroll);
 
         student_info_btn.setBounds(35, 360, 100, 25);
         content.add(student_info_btn);
 
-        addBtn.addActionListener(this);
-        addBtn.setBounds(350, 360, 100, 25);
-        content.add(addBtn);
+        add_btn.addActionListener(this);
+        add_btn.setBounds(350, 360, 100, 25);
+        content.add(add_btn);
 
-        deleteBtn.addActionListener(this);
-        deleteBtn.setBounds(245, 360, 100, 25);
-        content.add(deleteBtn);
+        delete_btn.addActionListener(this);
+        delete_btn.setBounds(245, 360, 100, 25);
+        content.add(delete_btn);
 
-        updateBtn.addActionListener(this);
-        updateBtn.setBounds(140, 360, 100, 25);
-        content.add(updateBtn);
+        update_btn.addActionListener(this);
+        update_btn.setBounds(140, 360, 100, 25);
+        content.add(update_btn);
 
         setVisible(true);
     }
@@ -85,14 +78,22 @@ public class StudentContainer extends WindowContainer implements ActionListener 
         scroll.setSize(getContent().getWidth() - 70, getContent().getHeight() - 110);
         revalidate();
         student_info_btn.setLocation(student_info_btn.getX(), scroll.getHeight() + 60);
-        addBtn.setLocation(addBtn.getX(), scroll.getHeight() + 60);
-        deleteBtn.setLocation(deleteBtn.getX(), scroll.getHeight() + 60);
-        updateBtn.setLocation(updateBtn.getX(), scroll.getHeight() + 60);
+        add_btn.setLocation(add_btn.getX(), scroll.getHeight() + 60);
+        delete_btn.setLocation(delete_btn.getX(), scroll.getHeight() + 60);
+        update_btn.setLocation(update_btn.getX(), scroll.getHeight() + 60);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(addBtn)) {
+        if (e.getSource().equals(add_btn)) {
             AppProject.window.showContentPaneAsDialog(new InsertContainer(student_table), "Insert Record", 475, 400, true);
+        } else if (e.getSource().equals(delete_btn)) {
+            int row = student_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(AppProject.window, "Cannot get selected record. Did you select a record or item from the database?", "Remove Record", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int res = JOptionPane.showConfirmDialog(AppProject.window, "Do you want to remove the record that you selected? This action cannot be undone.", "Remove Record", JOptionPane.YES_NO_OPTION);
+            if (res == 0) ((StudentRecordTableModel)student_table.getModel()).removeRecord(row);
         }
     }
 }

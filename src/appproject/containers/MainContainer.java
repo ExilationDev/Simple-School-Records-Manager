@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import appproject.lib.WindowContainer;
 import appproject.lib.components.ColorTheme;
+import appproject.lib.components.FontManager;
 
 // Container (or Scenes) for Navigation
 public class MainContainer extends WindowContainer implements ActionListener {
