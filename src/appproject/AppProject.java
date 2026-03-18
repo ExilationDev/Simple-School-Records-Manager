@@ -127,7 +127,7 @@ public class AppProject {
         window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
         window.getJMenuBar().getMenu(3).getItem(0).setEnabled(false);
 
-        window.showContent("Dashboard");
+        window.showContent("Welcome");
 
         // Always set minimum size to prevent GUI overlapping
         window.setMinimumSize(new Dimension(700, 400));

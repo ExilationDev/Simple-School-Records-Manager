@@ -77,6 +77,7 @@ public class StudentContainer extends WindowContainer implements ActionListener 
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         student_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         scroll.setSize(getContent().getWidth() - 70, getContent().getHeight() - 110);
         revalidate();

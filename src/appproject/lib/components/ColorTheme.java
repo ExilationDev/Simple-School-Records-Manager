@@ -4,6 +4,8 @@ import java.awt.*;
 import appproject.AppProject;
 import appproject.lib.AppWindow;
 
+import javax.swing.*;
+
 public class ColorTheme {
     // Standard Theme (Default)
     public static Color DEFAULT_COLOR = new Color(255, 255, 255); // this is particularly useless
@@ -78,7 +80,6 @@ public class ColorTheme {
                 CONTENT_FONT_COLOR = new Color(51, 51, 51);
             }
         }
-
         AppProject.window.revalidate();
         AppProject.window.repaint();
     }

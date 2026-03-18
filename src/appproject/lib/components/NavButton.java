@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 
 public class NavButton extends JButton implements MouseListener {
     private JLabel label;
-    private ButtonColors buttonColor;
     private Color labelColor;
 
     enum ButtonStatus {
@@ -21,11 +20,10 @@ public class NavButton extends JButton implements MouseListener {
 
     public ButtonStatus buttonStatus = ButtonStatus.IDLE;
 
-    public NavButton(String text, ButtonColors buttonColor, Color labelColor) {
-        this.buttonColor = buttonColor;
+    public NavButton(String text, Color labelColor) {
         this.labelColor = labelColor;
         setLayout(new GridLayout());
-        setForeground(this.buttonColor.DEFAULT);
+        setForeground(ColorTheme.NAVBUTTON_DEFAULT);
         setBorderPainted(false);
         addMouseListener(this);
 
@@ -39,15 +37,13 @@ public class NavButton extends JButton implements MouseListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        buttonColor.updateColors();
-
         labelColor = ColorTheme.NAVPANEL_FONT_COLOR;
-        label.setForeground(this.labelColor);
+        label.setForeground(labelColor);
         switch (buttonStatus) {
-            case IDLE -> setForeground(buttonColor.DEFAULT);
-            case MOUSE_ENTER -> setForeground(buttonColor.HOVER_ENTER);
-            case PRESSED -> setForeground(buttonColor.PRESSED);
-            case DISABLED -> setForeground(buttonColor.DISABLED);
+            case IDLE -> setForeground(ColorTheme.NAVBUTTON_DEFAULT);
+            case MOUSE_ENTER -> setForeground(ColorTheme.NAVBUTTON_HOVER_ENTER);
+            case PRESSED -> setForeground(ColorTheme.NAVBUTTON_PRESSED);
+            case DISABLED -> setForeground(ColorTheme.NAVBUTTON_DISABLED);
         }
 
         g.fillRect(0,  0, getWidth(), getHeight());

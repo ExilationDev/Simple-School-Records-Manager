@@ -91,7 +91,8 @@ public class AppWindow extends JFrame {
      * Preloads necessary containers (usually navigator containers). Internal function.<br>
      */
     void preloadContainers() {
-        mainContainer.add(new MainContainer(), "Dashboard");
+        mainContainer.add(new MainContainer(), "Welcome");
+        mainContainer.add(new DashboardContainer(), "Dashboard");
         mainContainer.add(new ClassesContainer(), "Classes");
         mainContainer.add(new ThemesContainer(), "Themes");
         mainContainer.add(new StudentContainer(), "Students");
@@ -171,7 +172,7 @@ public class AppWindow extends JFrame {
      */
     public void showContent(String name) {
         ((CardLayout)mainContainer.getLayout()).show(mainContainer, name);
-        refreshWindow();
+        mainContainer.repaint();
         debugPrintln("Shown content \"" + name + "\"", "UPDATE");
     }
 
