@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import appproject.containers.*;
-import appproject.containers.classes.InsertContainer;
-import appproject.containers.classes.UpdateContainer;
 import appproject.lib.AppWindow;
 import appproject.lib.ClassRecordTableModel;
+import appproject.lib.StudentRecordTableModel;
 import appproject.lib.WindowContainer;
 
 /**
@@ -22,7 +21,7 @@ import appproject.lib.WindowContainer;
  */
   // hello
 public class AppProject {
-    public static AppWindow window = new AppWindow("School Record Manager Application", true);
+    public static AppWindow window = new AppWindow("School Record Manager", true);
 
     // This is where you initialize your Menus and Containers.
     // This is also where you initialize menus for your AppWindow.
@@ -53,10 +52,6 @@ public class AppProject {
                         new JMenuItem("Insert"),
                         new JMenuItem("Remove"),
                         new JMenuItem("Update")
-                ))),
-                window.setUpMenuInMenu("Table", new ArrayList<>(List.of(
-                        new JMenuItem("Modify"),
-                        new JMenuItem("Layout")
                 ))))));
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(0).addActionListener((var e) -> {
             for (Component c : ((WindowContainer)window.getCurrentContent()).getContent().getComponents()) {
@@ -64,7 +59,8 @@ public class AppProject {
                 if (!(c instanceof JScrollPane)) { continue; }
                 Component view = ((JScrollPane)c).getViewport().getView();
                 if (view instanceof JTable) {
-                    window.showContentPaneAsDialog(new InsertContainer((JTable)view), "Insert Record", 475, 400, true);
+                    if (window.getCurrentContent().getClass().getName().equals("appproject.containers.ClassesContainer"))  window.showContentPaneAsDialog(new appproject.containers.classes.InsertContainer((JTable)view), "Insert Record", 475, 400, true);
+                    else if (window.getCurrentContent().getClass().getName().equals("appproject.containers.StudentContainer"))  window.showContentPaneAsDialog(new appproject.containers.students.InsertContainer((JTable)view), "Insert Record", 475, 400, true);
                     return;
                 }
             }
@@ -84,7 +80,10 @@ public class AppProject {
                         return;
                     }
                     int res = JOptionPane.showConfirmDialog(window, "Do you want to remove the record that you selected? This action cannot be undone.", "Remove Record", JOptionPane.YES_NO_OPTION);
-                    if (res == 0) ((ClassRecordTableModel)((JTable)view).getModel()).removeRecord(row);
+                    if (res == 0) {
+                        if (window.getCurrentContent().getClass().getName().equals("appproject.containers.ClassesContainer")) ((ClassRecordTableModel)((JTable)view).getModel()).removeRecord(row);
+                        else if (window.getCurrentContent().getClass().getName().equals("appproject.containers.StudentContainer")) ((StudentRecordTableModel)((JTable)view).getModel()).removeRecord(row);
+                    }
                     return;
                 }
             }
@@ -102,17 +101,14 @@ public class AppProject {
                         JOptionPane.showMessageDialog(window, "Cannot get selected record. Did you select a record or item from the database?", "Update Record", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
-                    AppProject.window.showContentPaneAsDialog(new UpdateContainer(((JTable)view)), "Update Record", 475, 400, true);
+                    if (window.getCurrentContent().getClass().getName().equals("appproject.containers.ClassesContainer")) AppProject.window.showContentPaneAsDialog(new appproject.containers.classes.UpdateContainer(((JTable)view)), "Update Record", 475, 400, true);
+                    else if (window.getCurrentContent().getClass().getName().equals("appproject.containers.StudentContainer")) AppProject.window.showContentPaneAsDialog(new appproject.containers.students.UpdateContainer(((JTable)view)), "Update Record", 475, 400, true);
                     return;
                 }
             }
             JOptionPane.showMessageDialog(window, "No records found. Select a table record from the database first.", "Update Record", JOptionPane.WARNING_MESSAGE);
         });
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(2).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-
-        ((JMenu) window.getJMenuBar().getMenu(1).getItem(1)).getItem(0).addActionListener((var e) -> {
-            window.showContentPaneAsDialog(new StudentLogContainer(), "Modify Table", 450, 420, true);
-        });
 
         window.setUpMenu("App", new ArrayList<>(List.of(new JMenuItem("Help"), new JMenuItem("About"), new JMenuItem("Exit"))));
         window.getJMenuBar().getMenu(2).getItem(0).addActionListener((var e) -> {

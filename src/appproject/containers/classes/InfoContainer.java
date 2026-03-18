@@ -53,8 +53,9 @@ public class InfoContainer extends WindowContainer implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         class_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        description_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        info_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
     }
 
     // Put any functionalities here acquired from doing an action event from any action listener in this container.

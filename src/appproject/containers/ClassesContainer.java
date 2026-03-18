@@ -28,7 +28,9 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
 
     public ArrayList<ClassData> list = new ArrayList<>(java.util.List.of(
             new ClassData(1000, "CCE 107", "Intermediate Programming", Programs.BSCS, 3.0, "This course involves mastering object-oriented programming, data structures, version control, and debugging techniques."),
-            new ClassData(1001, "CCE 103", "Computer Programming 2", Programs.BSIT, 3.0, "This course covers concepts like inheritance, polymorphism, arrays, and file handling to train students in designing and debugging software.")
+            new ClassData(1001, "CCE 103", "Computer Programming 2", Programs.BSIT, 3.0, "This course covers concepts like inheritance, polymorphism, arrays, and file handling to train students in designing and debugging software."),
+            new ClassData(1002, "CCE 101", "Introduction to Computing", Programs.BSCS, 3.0, "This course covers foundational concepts, including computer hardware (CPU, memory, storage), software (operating systems, applications), and data representation."),
+            new ClassData(1003, "MTH 101", "Differential Calculus", Programs.BSCS, 3.0, "This course covers on how quantities change relative to one another, focusing on instantaneous rates of change using derivatives.")
     ));
     ClassRecordTableModel model = new ClassRecordTableModel(list);
 

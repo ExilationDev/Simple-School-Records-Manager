@@ -1,6 +1,8 @@
 package appproject.containers;
 
 import appproject.AppProject;
+import appproject.containers.students.InfoContainer;
+import appproject.containers.students.UpdateContainer;
 import appproject.containers.students.InsertContainer;
 import appproject.lib.*;
 import appproject.lib.components.ColorTheme;
@@ -54,6 +56,7 @@ public class StudentContainer extends WindowContainer implements ActionListener 
         scroll.setBounds(35, 50, 600, 300);
         content.add(scroll);
 
+        student_info_btn.addActionListener(this);
         student_info_btn.setBounds(35, 360, 100, 25);
         content.add(student_info_btn);
 
@@ -94,6 +97,20 @@ public class StudentContainer extends WindowContainer implements ActionListener 
             }
             int res = JOptionPane.showConfirmDialog(AppProject.window, "Do you want to remove the record that you selected? This action cannot be undone.", "Remove Record", JOptionPane.YES_NO_OPTION);
             if (res == 0) ((StudentRecordTableModel)student_table.getModel()).removeRecord(row);
+        } else if (e.getSource().equals(update_btn)) {
+            int row = student_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(AppProject.window, "Cannot get selected record. Did you select a record or item from the database?", "Update Record", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            AppProject.window.showContentPaneAsDialog(new UpdateContainer(student_table), "Update Record", 475, 400, true);
+        } else if (e.getSource().equals(student_info_btn)) {
+            int row = student_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(AppProject.window, "Cannot get selected record. Did you select a record or item from the database?", "Information", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            AppProject.window.showContentPaneAsDialog(new InfoContainer(student_table), "Information", 475, 400, false);
         }
     }
 }

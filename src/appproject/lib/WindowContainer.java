@@ -15,6 +15,7 @@ import appproject.lib.components.*;
  */
 public class WindowContainer extends JPanel {
 
+    // For some reason, I can't turn this variable into a singleton instance :(
     private JPanel navigator;
     private JPanel content;
 

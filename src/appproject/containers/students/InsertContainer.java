@@ -8,6 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Enhanced version of StudentLogContainer that follows the usual layout.
+ *
+ * @author Carl Francis Pacatang, Kristian Vinz Lizardo
+ */
 public class InsertContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
     JLabel insert_label = new JLabel("Insert Record");
