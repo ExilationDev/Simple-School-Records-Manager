@@ -1,6 +1,7 @@
 package appproject.containers;
 
 import appproject.AppProject;
+import appproject.containers.students.InsertContainer;
 import appproject.lib.StudentData;
 import appproject.lib.StudentRecordTableModel;
 import appproject.lib.Programs;
@@ -8,7 +9,6 @@ import appproject.lib.WindowContainer;
 import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -17,12 +17,6 @@ public class StudentContainer extends WindowContainer implements ActionListener 
 
     JPanel navigator;
     JPanel content;
-
-    JPanel formPanel;
-
-    JTextField fulnamefield;
-    JTextField ageField;
-    JTextField ischolarField;
 
     JLabel student_label = new JLabel("Student");
     JButton student_info_btn = new JButton("Check Info");
@@ -33,7 +27,8 @@ public class StudentContainer extends WindowContainer implements ActionListener 
     int selectedRow = -1;
 
     public ArrayList<StudentData> list = new ArrayList<>(java.util.List.of(
-            new StudentData(152745,"Carl pacatang", 18,"Tagum City", Programs.BSCS,true)
+            new StudentData(152745,"Carl Francis Pacatang", 18,"Tagum City", Programs.BSCS,false),
+            new StudentData(152710,"Kristian Vinz Lizardo", 19,"Tagum City", Programs.BSCS,false)
     ));
     StudentRecordTableModel model = new StudentRecordTableModel(list);
 
@@ -54,10 +49,11 @@ public class StudentContainer extends WindowContainer implements ActionListener 
         student_label.setFont(new Font(null, Font.PLAIN, 20));
         content.add(student_label);
 
-        student_table.getColumn("Full Name").setPreferredWidth(30);
-        student_table.getColumn("Age").setPreferredWidth(60);
-        student_table.getColumn("Program").setPreferredWidth(50);
-        student_table.getColumn("Scholarship Status").setPreferredWidth(50);
+        student_table.getColumn("Student ID").setPreferredWidth(40);
+        student_table.getColumn("Full Name").setPreferredWidth(350);
+        student_table.getColumn("Age").setPreferredWidth(20);
+        student_table.getColumn("Program").setPreferredWidth(40);
+        student_table.getColumn("Scholarship Status").setPreferredWidth(70);
         scroll.setBounds(35, 50, 600, 300);
         content.add(scroll);
 

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * <i>Completely original backend code.</i><br>
@@ -129,7 +130,7 @@ public class AppWindow extends JFrame {
     /**
      * Configures the listener for the JMenu.<br>
      *
-     * @deprecated Use JMenu.addMenuListener() instead.
+     * @deprecated Use {@code JMenu.addMenuListener()} instead.
      * @param menu The JMenu to be configured.
      * @param l The configured listener.
      */
@@ -140,7 +141,7 @@ public class AppWindow extends JFrame {
     /**
      * Configures the action listener for the JMenuItem.<br>
      *
-     * @deprecated Use JMenuItem.addActionListener() instead.
+     * @deprecated Use {@code JMenuItem.addActionListener()} instead.
      * @param menuItem The JMenuItem to be configured.
      * @param l The configured listener.
      */
@@ -151,7 +152,7 @@ public class AppWindow extends JFrame {
     /**
      * Shows the existing container as main pane. Will disable previous pane.<br>
      *
-     * @deprecated Use showContent() instead. This method is thread intensive.
+     * @deprecated Use {@code showContent()} instead.
      * @see javax.swing.JPanel
      * @param c Selected container to be shown.
      * @return The shown JPanel.
@@ -178,7 +179,7 @@ public class AppWindow extends JFrame {
      * Gets the current content from the mainContainer.
      *
      * @see JPanel
-     * @return The current <i>visible</i> content from the mainContainer.
+     * @return {@code JPanel} The current <i>visible</i> content from the mainContainer. {@code null} If it doesn't get the content.
      */
     public JPanel getCurrentContent() {
         for (Component c : mainContainer.getComponents()) {
@@ -217,6 +218,10 @@ public class AppWindow extends JFrame {
      * Prints out a detailed console print. Static function. <br>
      */
     public static void debugPrintln(Object message, String type) {
+        if (type.equals("ERROR")) {
+            System.err.println("[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy | HH:mm:ss")) + "]\t" + type.toUpperCase() + ": \t" + message);
+            return;
+        }
         System.out.println("[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy | HH:mm:ss")) + "]\t" + type.toUpperCase() + ": \t" + message);
     }
 }

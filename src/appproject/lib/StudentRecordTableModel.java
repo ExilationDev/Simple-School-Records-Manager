@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class StudentRecordTableModel extends AbstractTableModel {
     private final ArrayList<StudentData> records;
-    private final String[] columnNames = {"Student Id", "Full Name", "Age", "Program", "Scholarship Status"};
+    private final String[] columnNames = {"Student ID", "Full Name", "Age", "Program", "Scholarship Status"};
 
     public StudentRecordTableModel(ArrayList<StudentData> records) {
         this.records = records;

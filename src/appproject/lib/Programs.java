@@ -5,5 +5,4 @@ public enum Programs {
     BSIT,
     BSIS,
     BSEMC,
-    BSCpE
 }

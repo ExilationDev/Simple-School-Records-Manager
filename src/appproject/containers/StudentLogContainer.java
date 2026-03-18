@@ -35,16 +35,16 @@ public class StudentLogContainer extends WindowContainer implements ActionListen
 
         // Get the content panel from WindowContainer
         JPanel content = getContent();
-        content.setLayout(null);
+        content.setLayout(null); // getContent() is already null layout so this is redundant.
         
         
         setLayout(new BorderLayout());
-        
+        add(new JPanel(), BorderLayout.WEST);
         add(content, BorderLayout.CENTER);
 
         // Title
         title.setText("STUDENT INFORMATION");
-        title.setFont(new Font("Arial", Font.BOLD, 18));
+        title.setFont(new Font(null, Font.BOLD, 20));
         title.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         title.setBounds(90, 20, 250, 30);
         content.add(title);
