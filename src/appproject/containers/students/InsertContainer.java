@@ -1,9 +1,6 @@
 package appproject.containers.students;
 
-import appproject.lib.ClassData;
-import appproject.lib.ClassRecordTableModel;
-import appproject.lib.Programs;
-import appproject.lib.WindowContainer;
+import appproject.lib.*;
 import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
@@ -15,7 +12,7 @@ public class InsertContainer extends WindowContainer implements ActionListener {
     // This is where you build your GUI code outside the AppWindow and WindowContainer framework.
     JLabel insert_label = new JLabel("Insert Record");
     JLabel id_label = new JLabel("Student ID*");
-    JSpinner id_field = new JSpinner(new SpinnerNumberModel(1000, 1000, 9999, 1));
+    JSpinner id_field = new JSpinner(new SpinnerNumberModel(100000, 100000, 999999, 1));
     JLabel fullname_label = new JLabel("Full Name*");
     JTextField fullname_field = new JTextField();
     JLabel address_label = new JLabel("Address*");
@@ -26,8 +23,6 @@ public class InsertContainer extends WindowContainer implements ActionListener {
     JComboBox<Programs> program_dropdown = new JComboBox<>();
     JLabel scholar_label = new JLabel("Is Scholar");
     JCheckBox scholar_checkbox = new JCheckBox();
-    JLabel description_label = new JLabel("Class Description");
-    JTextArea description_field = new JTextArea();
     JButton insert_btn = new JButton("Insert Data");
 
     JTable table;
@@ -51,46 +46,44 @@ public class InsertContainer extends WindowContainer implements ActionListener {
         insert_label.setBounds(20, 10, 200, 30);
         insert_label.setFont(new Font(null, Font.PLAIN, 20));
 
-        code_label.setBounds(35, 50, 200, 20);
-        code_field.setBounds(235, 50, 200, 20);
-        code_field.setEditor(new JSpinner.NumberEditor(code_field, "#"));
+        id_label.setBounds(35, 50, 200, 20);
+        id_field.setBounds(235, 50, 200, 20);
+        id_field.setEditor(new JSpinner.NumberEditor(id_field, "#"));
 
-        class_title_label.setBounds(35, 80, 200, 20);
-        class_title_field.setBounds(235, 80, 200, 20);
+        fullname_label.setBounds(35, 80, 200, 20);
+        fullname_field.setBounds(235, 80, 200, 20);
 
-        class_name_label.setBounds(35, 110, 200, 20);
-        class_name_field.setBounds(235, 110, 200, 20);
+        address_label.setBounds(35, 110, 200, 20);
+        address_field.setBounds(235, 110, 200, 20);
 
-        program_label.setBounds(35, 140, 200, 20);
-        program_dropdown.setBounds(235, 140, 200, 20);
+        age_label.setBounds(35, 140, 200, 20);
+        age_field.setBounds(235, 140, 200, 20);
+
+        program_label.setBounds(35, 170, 200, 20);
+        program_dropdown.setBounds(235, 170, 200, 20);
         for (Programs program : Programs.values()) {
             program_dropdown.addItem(program);
         }
 
-        units_label.setBounds(35, 170, 200, 20);
-        units_field.setBounds(235, 170, 200, 20);
-
-        description_label.setBounds(35, 200, 200, 20);
-        description_field.setLineWrap(true);
-        JScrollPane description_scroll_pane = new JScrollPane(description_field);
-        description_scroll_pane.setBounds(235, 200, 200, 100);
+        scholar_label.setBounds(35, 200, 200, 20);
+        scholar_checkbox.setBounds(235, 200, 20, 20);
 
         insert_btn.setBounds(35, 320, 200, 30);
         insert_btn.addActionListener(this);
 
         getContent().add(insert_label);
-        getContent().add(code_label);
-        getContent().add(code_field);
-        getContent().add(class_title_label);
-        getContent().add(class_title_field);
-        getContent().add(class_name_label);
-        getContent().add(class_name_field);
+        getContent().add(id_label);
+        getContent().add(id_field);
+        getContent().add(fullname_label);
+        getContent().add(fullname_field);
+        getContent().add(address_label);
+        getContent().add(address_field);
         getContent().add(program_label);
         getContent().add(program_dropdown);
-        getContent().add(units_label);
-        getContent().add(units_field);
-        getContent().add(description_label);
-        getContent().add(description_scroll_pane);
+        getContent().add(age_label);
+        getContent().add(age_field);
+        getContent().add(scholar_label);
+        getContent().add(scholar_checkbox);
         getContent().add(insert_btn);
     }
 
@@ -100,12 +93,12 @@ public class InsertContainer extends WindowContainer implements ActionListener {
         super.paintComponent(g);
 
         insert_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        code_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        class_title_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        class_name_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        id_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        fullname_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        address_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         program_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        units_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        description_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        age_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
+        scholar_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
     }
 
     // Put any functionalities here acquired from doing an action event from any action listener in this container.
@@ -118,8 +111,8 @@ public class InsertContainer extends WindowContainer implements ActionListener {
             return;
         }
 
-        ClassData data = new ClassData((int)code_field.getValue(), class_title_field.getText(), class_name_field.getText(), (Programs)program_dropdown.getSelectedItem(), (double)units_field.getValue(), description_field.getText());
-        ((ClassRecordTableModel)table.getModel()).addRecord(data);
+        StudentData data = new StudentData((int)id_field.getValue(), fullname_field.getText(), (int)age_field.getValue(), address_field.getText(), (Programs)program_dropdown.getSelectedItem(), scholar_checkbox.isSelected());
+        ((StudentRecordTableModel)table.getModel()).addRecord(data);
         SwingUtilities.getWindowAncestor(this).dispose();
     }
 }

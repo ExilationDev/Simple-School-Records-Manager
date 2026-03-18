@@ -39,6 +39,28 @@ public class StudentRecordTableModel extends AbstractTableModel {
         };
     }
 
+    public StudentData getSelectedRecord(int index) {
+        return records.get(index);
+    }
+
+    public void addRecord(StudentData record) {
+        records.add(record);
+        fireTableRowsInserted(records.size() - 1, records.size() - 1);
+        AppWindow.debugPrintln("Successfully added: " + record, "MESSAGE");
+    }
+
+    public void removeRecord(int index) {
+        StudentData removedRecord = records.remove(index);
+        fireTableRowsDeleted(index, index);
+        AppWindow.debugPrintln("Successfully removed: " + removedRecord, "MESSAGE");
+    }
+
+    public void setRecord(StudentData record, int index) {
+        records.set(index, record);
+        fireTableRowsUpdated(index, index);
+        AppWindow.debugPrintln("Successfully updated: " + record, "MESSAGE");
+    }
+
     @Override
     public boolean isCellEditable(int row, int col) {
         return false;

@@ -2,10 +2,7 @@ package appproject.containers;
 
 import appproject.AppProject;
 import appproject.containers.students.InsertContainer;
-import appproject.lib.StudentData;
-import appproject.lib.StudentRecordTableModel;
-import appproject.lib.Programs;
-import appproject.lib.WindowContainer;
+import appproject.lib.*;
 import appproject.lib.components.ColorTheme;
 
 import javax.swing.*;
@@ -20,9 +17,9 @@ public class StudentContainer extends WindowContainer implements ActionListener 
 
     JLabel student_label = new JLabel("Student");
     JButton student_info_btn = new JButton("Check Info");
-    JButton addBtn = new JButton("Insert");
-    JButton deleteBtn = new JButton("Delete");
-    JButton updateBtn = new JButton("Update");
+    JButton add_btn = new JButton("Insert");
+    JButton delete_btn = new JButton("Delete");
+    JButton update_btn = new JButton("Update");
 
     int selectedRow = -1;
 
@@ -60,17 +57,17 @@ public class StudentContainer extends WindowContainer implements ActionListener 
         student_info_btn.setBounds(35, 360, 100, 25);
         content.add(student_info_btn);
 
-        addBtn.addActionListener(this);
-        addBtn.setBounds(350, 360, 100, 25);
-        content.add(addBtn);
+        add_btn.addActionListener(this);
+        add_btn.setBounds(350, 360, 100, 25);
+        content.add(add_btn);
 
-        deleteBtn.addActionListener(this);
-        deleteBtn.setBounds(245, 360, 100, 25);
-        content.add(deleteBtn);
+        delete_btn.addActionListener(this);
+        delete_btn.setBounds(245, 360, 100, 25);
+        content.add(delete_btn);
 
-        updateBtn.addActionListener(this);
-        updateBtn.setBounds(140, 360, 100, 25);
-        content.add(updateBtn);
+        update_btn.addActionListener(this);
+        update_btn.setBounds(140, 360, 100, 25);
+        content.add(update_btn);
 
         setVisible(true);
     }
@@ -81,14 +78,22 @@ public class StudentContainer extends WindowContainer implements ActionListener 
         scroll.setSize(getContent().getWidth() - 70, getContent().getHeight() - 110);
         revalidate();
         student_info_btn.setLocation(student_info_btn.getX(), scroll.getHeight() + 60);
-        addBtn.setLocation(addBtn.getX(), scroll.getHeight() + 60);
-        deleteBtn.setLocation(deleteBtn.getX(), scroll.getHeight() + 60);
-        updateBtn.setLocation(updateBtn.getX(), scroll.getHeight() + 60);
+        add_btn.setLocation(add_btn.getX(), scroll.getHeight() + 60);
+        delete_btn.setLocation(delete_btn.getX(), scroll.getHeight() + 60);
+        update_btn.setLocation(update_btn.getX(), scroll.getHeight() + 60);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(addBtn)) {
+        if (e.getSource().equals(add_btn)) {
             AppProject.window.showContentPaneAsDialog(new InsertContainer(student_table), "Insert Record", 475, 400, true);
+        } else if (e.getSource().equals(delete_btn)) {
+            int row = student_table.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(AppProject.window, "Cannot get selected record. Did you select a record or item from the database?", "Remove Record", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int res = JOptionPane.showConfirmDialog(AppProject.window, "Do you want to remove the record that you selected? This action cannot be undone.", "Remove Record", JOptionPane.YES_NO_OPTION);
+            if (res == 0) ((StudentRecordTableModel)student_table.getModel()).removeRecord(row);
         }
     }
 }
