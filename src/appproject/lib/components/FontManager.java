@@ -26,7 +26,7 @@ public class FontManager {
 
     public static void changeFont(Component component) {
         component.setFont(instance.customFont(new File("resources/fonts/OpenSans-Regular.ttf"), 15f));
-        AppWindow.debugPrintln("Successfully set up font in component " + component.getClass().getName(), "INIT");
+        AppWindow.debugPrintln("Successfully set up font in component " + component.getClass().getSimpleName(), "INIT");
         if (component instanceof Container) {
             for (Component c : ((Container)component).getComponents()) {
                 changeFont(c);

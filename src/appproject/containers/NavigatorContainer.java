@@ -38,15 +38,6 @@ public class NavigatorContainer extends JPanel {
             AppProject.window.showContent("Welcome");
         });
 
-        NavButton dashbaord_btn = new NavButton("Dashboard", ColorTheme.NAVPANEL_FONT_COLOR);
-        dashbaord_btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, welcome_btn.getMinimumSize().height + 10));
-        dashbaord_btn.setAlignmentX(Component.LEFT_ALIGNMENT);
-        add(dashbaord_btn);
-        dashbaord_btn.addActionListener((var e) -> {
-            // AppProject.window.showContentPane(AppProject.PreloadedContainers.MAIN_CONTAINER);
-            AppProject.window.showContent("Dashboard");
-        });
-
         NavLabel record_label = new NavLabel("Record Database", ColorTheme.NAVPANEL_FONT_COLOR);
         record_label.setMaximumSize(new Dimension(Integer.MAX_VALUE, record_label.getMinimumSize().height + 20));
         record_label.setAlignmentX(Component.LEFT_ALIGNMENT);

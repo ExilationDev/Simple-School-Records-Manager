@@ -45,6 +45,6 @@ public class WindowContainer extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         setBackground(ColorTheme.CONTENT_DEFAULT);
-        AppWindow.debugPrintln("Repainting " + getClass().getName() + "...", "UPDATE");
+        AppWindow.debugPrintln("Repainting " + getClass().getSimpleName() + "...", "UPDATE");
     }
 }

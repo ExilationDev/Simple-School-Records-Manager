@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -76,12 +79,21 @@ public class AppWindow extends JFrame {
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        showContentPaneAsDialog(new LogInContainer(), "Login", 475, 400, true, new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                JOptionPane.showMessageDialog(null, "The application will now close.", "Exit", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
+            }
+        });
+
         setVisible(true);
         debugPrintln("Successfully initialized window!", "INIT");
         debugPrintln("Listing all components of the JFrame (AppWindow), Checking...", "INIT");
         Component[] comp = getContentPane().getComponents();
         for (Component c : comp) {
-            debugPrintln("\t\t" + c.getClass().getName(), "INIT");
+            debugPrintln("\t\t" + c.getClass().getSimpleName(), "INIT");
         }
     }
 
@@ -90,7 +102,6 @@ public class AppWindow extends JFrame {
      */
     void preloadContainers() {
         mainContainer.add(new MainContainer(), "Welcome");
-        mainContainer.add(new DashboardContainer(), "Dashboard");
         mainContainer.add(new ClassesContainer(), "Classes");
         mainContainer.add(new ThemesContainer(), "Themes");
         mainContainer.add(new StudentContainer(), "Students");
@@ -203,6 +214,26 @@ public class AppWindow extends JFrame {
         dialog.setContentPane(c);
         dialog.setSize(width, height);
         dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }
+
+    /**
+     * Shows the existing container as a separate window or dialog, with WindowListener.<br>
+     *
+     * @see javax.swing.JDialog
+     * @param c Selected container to be shown.
+     * @param title The title of the dialog.
+     * @param width The width of the dialog.
+     * @param height The height of the dialog.
+     * @param modal The mode of the dialog.
+     * @param wl The WindowListener.
+     */
+    public void showContentPaneAsDialog(WindowContainer c, String title, int width, int height, boolean modal, WindowListener wl) {
+        JDialog dialog = new JDialog(this, title, modal);
+        dialog.setContentPane(c);
+        dialog.setSize(width, height);
+        dialog.setLocationRelativeTo(this);
+        dialog.addWindowListener(wl);
         dialog.setVisible(true);
     }
 

@@ -43,6 +43,10 @@ public class ClassRecordTableModel extends AbstractTableModel {
         return records.get(index);
     }
 
+    public ArrayList<ClassData> getRecords() {
+        return records;
+    }
+
     public void addRecord(ClassData record) {
         records.add(record);
         fireTableRowsInserted(records.size() - 1, records.size() - 1);

@@ -10,35 +10,39 @@ import java.awt.event.*;
  * @author Andre Quima
  */
 public class LogInContainer extends WindowContainer implements ActionListener {
-
-    JPanel panel;
-    JLabel StudentIdJLabel, passJLabel;
-    JTextField StudentId;
-    JPasswordField password;
+    JLabel title_label;
+    JLabel username_label, password_label;
+    JTextField username_field;
+    JPasswordField password_field;
     JButton login;
 
     public LogInContainer() {
         setLayout(null);
 
-        StudentIdJLabel = new JLabel("Student Id");
-        StudentIdJLabel.setBounds(50, 40, 100, 30);
+        title_label = new JLabel("Login");
+        title_label.setBounds(20, 10, 200, 30);
+        title_label.setFont(new Font(null, Font.PLAIN, 20));
 
-        StudentId = new JTextField();
-        StudentId.setBounds(150, 40, 150, 30);
+        username_label = new JLabel("Faculty Name");
+        username_label.setBounds(35, 50, 200, 20);
 
-        passJLabel = new JLabel("Password");
-        passJLabel.setBounds(50, 90, 100, 30);
+        username_field = new JTextField();
+        username_field.setBounds(235, 50, 200, 20);
 
-        password = new JPasswordField();
-        password.setBounds(150, 90, 150, 30);
+        password_label = new JLabel("Password");
+        password_label.setBounds(35, 80, 200, 20);
+
+        password_field = new JPasswordField();
+        password_field.setBounds(235, 80, 200, 20);
 
         login = new JButton("Login");
-        login.setBounds(120, 140, 100, 30);
+        login.setBounds(35, 320, 200, 30);
 
-        add(StudentIdJLabel);
-        add(StudentId);
-        add(passJLabel);
-        add(password);
+        add(title_label);
+        add(username_label);
+        add(username_field);
+        add(password_label);
+        add(password_field);
         add(login);
 
         setSize(350, 250);
@@ -49,13 +53,14 @@ public class LogInContainer extends WindowContainer implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String id = StudentId.getText();
-        String pass = new String(password.getPassword());
+        String id = username_field.getText();
+        String pass = new String(password_field.getPassword());
 
         if (id.equals("admin") && pass.equals("1234")) {
-            JOptionPane.showMessageDialog(null, "Login Successful");
+            JOptionPane.showMessageDialog(this, "Login successful!");
+            SwingUtilities.getWindowAncestor(this).dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Invalid Login");
+            JOptionPane.showMessageDialog(this, "Invalid login. Please try again.");
         }
     }
 }

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,9 +125,6 @@ public class AppProject {
             JOptionPane.showMessageDialog(window, "The application will now close.", "Exit", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         });
-
-        window.setUpMenu("Account", new ArrayList<>(List.of(new JMenuItem("Login"))));
-        window.getJMenuBar().getMenu(3).getItem(0).setEnabled(false);
 
         window.showContent("Welcome");
 
