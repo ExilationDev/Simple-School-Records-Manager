@@ -14,14 +14,12 @@ public class DashboardContainer extends WindowContainer implements ActionListene
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public DashboardContainer() {
-        setLayout(new BorderLayout());
+        super();
+        setLayout(null);
 
         title_label.setBounds(20, 10, 400, 30);
         title_label.setFont(new Font(null, Font.PLAIN, 20));
-        getContent().add(title_label);
-
-        add(getNavigator(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+        add(title_label);
 
         setVisible(true);
     }

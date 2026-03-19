@@ -29,15 +29,13 @@ public class UpdateContainer extends WindowContainer implements ActionListener {
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public UpdateContainer(JTable table) {
-        setLayout(new BorderLayout());
+        super();
+        setLayout(null);
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!
         this.table = table;
         setUpClassesGUI();
-
-        add(new JPanel(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
 
         setVisible(true);
     }
@@ -79,20 +77,20 @@ public class UpdateContainer extends WindowContainer implements ActionListener {
         insert_btn.setBounds(35, 320, 200, 30);
         insert_btn.addActionListener(this);
 
-        getContent().add(insert_label);
-        getContent().add(id_label);
-        getContent().add(id_field);
-        getContent().add(fullname_label);
-        getContent().add(fullname_field);
-        getContent().add(address_label);
-        getContent().add(address_field);
-        getContent().add(program_label);
-        getContent().add(program_dropdown);
-        getContent().add(age_label);
-        getContent().add(age_field);
-        getContent().add(scholar_label);
-        getContent().add(scholar_checkbox);
-        getContent().add(insert_btn);
+        add(insert_label);
+        add(id_label);
+        add(id_field);
+        add(fullname_label);
+        add(fullname_field);
+        add(address_label);
+        add(address_field);
+        add(program_label);
+        add(program_dropdown);
+        add(age_label);
+        add(age_field);
+        add(scholar_label);
+        add(scholar_checkbox);
+        add(insert_btn);
     }
 
     // repaint function. Put setForegrounds of your JComponent here
@@ -112,7 +110,7 @@ public class UpdateContainer extends WindowContainer implements ActionListener {
     // Put any functionalities here acquired from doing an action event from any action listener in this container.
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (Component c : getContent().getComponents()) {
+        for (Component c : getComponents()) {
             if (!(c instanceof JTextField)) continue;
             if (!((JTextField)c).getText().trim().isEmpty()) continue;
             JOptionPane.showMessageDialog(this, "One or more required fields are empty. Please check your inputs and try again.", "Insert Record", JOptionPane.ERROR_MESSAGE);

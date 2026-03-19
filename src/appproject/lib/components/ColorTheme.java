@@ -80,6 +80,10 @@ public class ColorTheme {
                 CONTENT_FONT_COLOR = new Color(51, 51, 51);
             }
         }
+        refreshColors();
+    }
+
+    public static void refreshColors() {
         AppProject.window.revalidate();
         AppProject.window.repaint();
     }

@@ -54,7 +54,7 @@ public class AppProject {
                         new JMenuItem("Update")
                 ))))));
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(0).addActionListener((var e) -> {
-            for (Component c : ((WindowContainer)window.getCurrentContent()).getContent().getComponents()) {
+            for (Component c : ((WindowContainer)window.getCurrentContent()).getComponents()) {
                 // System.out.println(c);
                 if (!(c instanceof JScrollPane)) { continue; }
                 Component view = ((JScrollPane)c).getViewport().getView();
@@ -69,7 +69,7 @@ public class AppProject {
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(0).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(1).addActionListener((var e) -> {
             // window.showContentPaneAsDialog(new InsertContainer(), "Remove Record", 300, 300, true);
-            for (Component c : ((WindowContainer)window.getCurrentContent()).getContent().getComponents()) {
+            for (Component c : ((WindowContainer)window.getCurrentContent()).getComponents()) {
                 // System.out.println(c);
                 if (!(c instanceof JScrollPane)) { continue; }
                 Component view = ((JScrollPane)c).getViewport().getView();
@@ -91,7 +91,7 @@ public class AppProject {
         });
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(1).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
         ((JMenu) window.getJMenuBar().getMenu(1).getItem(0)).getItem(2).addActionListener((var e) -> {
-            for (Component c : ((WindowContainer)window.getCurrentContent()).getContent().getComponents()) {
+            for (Component c : ((WindowContainer)window.getCurrentContent()).getComponents()) {
                 // System.out.println(c);
                 if (!(c instanceof JScrollPane)) { continue; }
                 Component view = ((JScrollPane)c).getViewport().getView();

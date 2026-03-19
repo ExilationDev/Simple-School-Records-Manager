@@ -1,6 +1,5 @@
 package appproject.lib;
 
-import appproject.AppProject;
 import appproject.containers.*;
 
 import javax.swing.*;
@@ -10,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * <i>Completely original backend code.</i><br>
@@ -38,7 +36,7 @@ public class AppWindow extends JFrame {
     public AppWindow(String title, int x, int y, int width, int height, boolean resizable) {
         setTitle(title);
         setResizable(resizable);
-        setLayout(null);
+        setLayout(new BorderLayout());
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -63,7 +61,7 @@ public class AppWindow extends JFrame {
     public AppWindow(String title, boolean resizable) {
         setTitle(title);
         setResizable(resizable);
-        setLayout(null);
+        setLayout(new BorderLayout());
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -96,7 +94,8 @@ public class AppWindow extends JFrame {
         mainContainer.add(new ClassesContainer(), "Classes");
         mainContainer.add(new ThemesContainer(), "Themes");
         mainContainer.add(new StudentContainer(), "Students");
-        setContentPane(mainContainer);
+        add(new NavigatorContainer(), BorderLayout.WEST);
+        add(mainContainer, BorderLayout.CENTER);
         debugPrintln("Successfully preloaded containers!", "INIT");
     }
 

@@ -39,10 +39,7 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public ThemesContainer() {
-        setLayout(new BorderLayout());
-
-        add(getNavigator(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+        super();
 
         // Put content GUI code here
         scroll_pane.setBounds(0, 0, 1000, 1000);
@@ -132,7 +129,7 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
 
         scroll_pane.setViewportView(component);
 
-        getContent().add(scroll_pane);
+        add(scroll_pane);
 
         setVisible(true);
     }
@@ -141,7 +138,6 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        scroll_pane.setBounds(0, 0, getContent().getWidth(), getContent().getHeight());
         revalidate();
 
         theme_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
@@ -189,6 +185,6 @@ public class ThemesContainer extends WindowContainer implements ActionListener {
                 ColorTheme.CONTENT_FONT_COLOR = c == null ? ColorTheme.CONTENT_FONT_COLOR : c;
             }
         }
-        repaint();
+        ColorTheme.refreshColors();
     }
 }

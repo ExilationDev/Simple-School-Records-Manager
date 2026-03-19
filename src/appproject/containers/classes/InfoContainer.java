@@ -19,9 +19,8 @@ public class InfoContainer extends WindowContainer implements ActionListener {
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public InfoContainer(JTable table) {
-        setLayout(new BorderLayout());
-        add(new JPanel(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+        super();
+        setLayout(null);
 
         // Put content GUI code here
         // Make sure you use getContent() when you add components!
@@ -42,9 +41,9 @@ public class InfoContainer extends WindowContainer implements ActionListener {
         JScrollPane scroll_pane = new JScrollPane(description_label);
         scroll_pane.setBounds(35, 65, 400, 280);
 
-        getContent().add(class_label);
-        getContent().add(info_label);
-        getContent().add(scroll_pane);
+        add(class_label);
+        add(info_label);
+        add(scroll_pane);
 
         setVisible(true);
     }

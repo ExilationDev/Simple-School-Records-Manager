@@ -32,68 +32,61 @@ public class StudentLogContainer extends WindowContainer implements ActionListen
     JButton deleteButton = new JButton("DELETE STUDENT");
 
     public StudentLogContainer() {
-
-        // Get the content panel from WindowContainer
-        JPanel content = getContent();
-        content.setLayout(null); // getContent() is already null layout so this is redundant.
-        
-        
-        setLayout(new BorderLayout());
-        add(new JPanel(), BorderLayout.WEST);
-        add(content, BorderLayout.CENTER);
+        super();
+        setLayout(null);
 
         // Title
         title.setText("STUDENT INFORMATION");
         title.setFont(new Font(null, Font.BOLD, 20));
         title.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         title.setBounds(90, 20, 250, 30);
-        content.add(title);
+        add(title);
 
         // Student ID
         idLabel.setText("Student ID:");
         idLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         idLabel.setBounds(40, 80, 120, 25);
-        content.add(idLabel);
+        add(idLabel);
 
         idField.setBounds(160, 80, 200, 25);
-        content.add(idField);
+        add(idField);
 
         // First name
         firstNameLabel.setText("First Name:");
         firstNameLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         firstNameLabel.setBounds(40, 120, 120, 25);
-        content.add(firstNameLabel);
+        add(firstNameLabel);
 
         firstNameField.setBounds(160, 120, 200, 25);
-        content.add(firstNameField);
+        add(firstNameField);
 
         // Last name
         lastNameLabel.setText("Last Name:");
         lastNameLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         lastNameLabel.setBounds(40, 160, 120, 25);
-        content.add(lastNameLabel);
+        add(lastNameLabel);
 
         lastNameField.setBounds(160, 160, 200, 25);
-        content.add(lastNameField);
+        add(lastNameField);
 
         // Age
         ageLabel.setText("Age:");
         ageLabel.setForeground(ColorTheme.CONTENT_FONT_COLOR);
         ageLabel.setBounds(40, 200, 120, 25);
-        content.add(ageLabel);
+        add(ageLabel);
 
         ageField.setBounds(160, 200, 200, 25);
-        content.add(ageField);
+        add(ageField);
 
         // Add student button
         addButton.setBounds(90, 270, 140, 35);
         addButton.addActionListener(this);
-        content.add(addButton);
+        add(addButton);
 
         // Delete student button
         deleteButton.setBounds(240, 270, 140, 35);
         deleteButton.addActionListener(this);
-        content.add(deleteButton);
+        add(deleteButton);
     }
     
     // Handles button clicks

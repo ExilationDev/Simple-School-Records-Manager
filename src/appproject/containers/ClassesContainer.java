@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class ClassesContainer extends WindowContainer implements ActionListener {
 
-    JPanel navigator;
     JPanel content;
 
     JLabel classes_label = new JLabel("Classes");
@@ -38,18 +37,12 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
     JScrollPane scroll = new JScrollPane(classes_table);
 
     public ClassesContainer() {
-        setLayout(new BorderLayout());
-        navigator = getNavigator();
-        content = getContent();
-
-        add(navigator, BorderLayout.WEST);
-        add(content, BorderLayout.CENTER);
-
-        content.setLayout(null);
+        super();
+        setLayout(null);
 
         classes_label.setBounds(20, 10, 200, 30);
         classes_label.setFont(new Font(null, Font.PLAIN, 20));
-        content.add(classes_label);
+        add(classes_label);
 
         classes_table.getColumn("Code").setPreferredWidth(30);
         classes_table.getColumn("Class").setPreferredWidth(60);
@@ -57,23 +50,23 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
         classes_table.getColumn("Program").setPreferredWidth(50);
         classes_table.getColumn("Units").setPreferredWidth(25);
         scroll.setBounds(35, 50, 600, 300);
-        content.add(scroll);
+        add(scroll);
 
         classes_info_btn.addActionListener(this);
         classes_info_btn.setBounds(35, 360, 100, 25);
-        content.add(classes_info_btn);
+        add(classes_info_btn);
 
         add_btn.addActionListener(this);
         add_btn.setBounds(350, 360, 100, 25);
-        content.add(add_btn);
+        add(add_btn);
 
         delete_btn.addActionListener(this);
         delete_btn.setBounds(245, 360, 100, 25);
-        content.add(delete_btn);
+        add(delete_btn);
 
         update_btn.addActionListener(this);
         update_btn.setBounds(140, 360, 100, 25);
-        content.add(update_btn);
+        add(update_btn);
 
         setVisible(true);
     }
@@ -81,7 +74,7 @@ public class ClassesContainer extends WindowContainer implements ActionListener 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         classes_label.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        scroll.setSize(getContent().getWidth() - 70, getContent().getHeight() - 110);
+        scroll.setSize(getWidth() - 70, getHeight() - 110);
         revalidate();
         classes_info_btn.setLocation(classes_info_btn.getX(), scroll.getHeight() + 60);
         add_btn.setLocation(add_btn.getX(), scroll.getHeight() + 60);

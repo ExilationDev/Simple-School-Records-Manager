@@ -23,9 +23,8 @@ public class AboutContainer extends WindowContainer implements ActionListener {
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public AboutContainer() {
-        setLayout(new BorderLayout());
-        add(new JPanel(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+        super();
+        setLayout(null);
 
         // Put content GUI code here
         // Make sure you use getContent() when you add components!
@@ -35,8 +34,8 @@ public class AboutContainer extends WindowContainer implements ActionListener {
         description_label.setBounds(35, 50, 500, 300);
         description_label.setVerticalAlignment(JLabel.TOP);
 
-        getContent().add(about_label);
-        getContent().add(description_label);
+        add(about_label);
+        add(description_label);
 
         setVisible(true);
     }

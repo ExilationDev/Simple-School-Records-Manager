@@ -15,25 +15,13 @@ public class MainContainer extends WindowContainer implements ActionListener {
     JLabel test = new JLabel();
 
     public MainContainer() {
-        setLayout(new BorderLayout());
+        super();
 
         // Create welcome panel with background
         JPanel welcomePanel = createWelcomePanel();
 
-        // Set layout for content
-        getContent().setLayout(new BorderLayout());
-
-        // Optional top label
-        test.setForeground(ColorTheme.CONTENT_FONT_COLOR);
-        test.setBorder(new EmptyBorder(10, 10, 10, 10));
-        getContent().add(test, BorderLayout.NORTH);
-
         // Add welcome panel
-        getContent().add(welcomePanel, BorderLayout.CENTER);
-
-        // Add navigation + content
-        add(getNavigator(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+        add(welcomePanel, BorderLayout.CENTER);
 
         setVisible(true);
     }

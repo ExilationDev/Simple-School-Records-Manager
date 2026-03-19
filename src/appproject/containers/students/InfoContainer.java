@@ -18,9 +18,8 @@ public class InfoContainer extends WindowContainer implements ActionListener {
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public InfoContainer(JTable table) {
-        setLayout(new BorderLayout());
-        add(new JPanel(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+        super();
+        setLayout(null);
 
         // Put content GUI code here
         // Make sure you use getContent() when you add components!
@@ -39,10 +38,10 @@ public class InfoContainer extends WindowContainer implements ActionListener {
         address_label.setText("Address: " + selectedRow.address());
         address_label.setBounds(35, 100, 400, 20);
 
-        getContent().add(student_label);
-        getContent().add(id_label);
-        getContent().add(age_label);
-        getContent().add(address_label);
+        add(student_label);
+        add(id_label);
+        add(age_label);
+        add(address_label);
 
         setVisible(true);
     }

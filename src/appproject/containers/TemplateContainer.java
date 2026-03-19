@@ -14,9 +14,7 @@ public class TemplateContainer extends WindowContainer implements ActionListener
 
     // This constructor is an equivalent method to the main() method of AppProject.
     public TemplateContainer() {
-        setLayout(new BorderLayout());
-        add(getNavigator(), BorderLayout.WEST);
-        add(getContent(), BorderLayout.CENTER);
+        super();
 
         // Put content GUI code here
         // Make sure you use the content variable whenever you add components!
