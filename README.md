@@ -113,7 +113,7 @@ Prints out a detailed console print for debugging. It includes a timestamp and d
 ### • `appproject.lib.WindowContainer`
 ##### `WindowContainer()`
 Sets up the WindowContainer. Also known as the content for AppWindow.\
-Custom containers inheriting WindowContainer should use `super()` as the first statement in their constructors.\
+Custom containers inheriting WindowContainer should use `super()` as the first statement in their constructors.
 
 ### • `appproject.lib.components.ColorTheme`
 | Variables | Data Type | Default Value |
