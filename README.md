@@ -8,7 +8,7 @@ Made purely using Java Swing.
 
 
 ## Flowchart
-If you want to visualize how this application and its database system works, a flowchart of it is available.
+If you want to visualize how this application and its database system works, a [flowchart](https://github.com/ExilationDev/Simple-School-Records-Manager/blob/master/appProjectFlowchart.pdf) of it is available.
 
 ## Documentation
 ### • `appproject.lib.AppWindow`
