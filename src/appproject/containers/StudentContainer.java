@@ -26,9 +26,9 @@ public class StudentContainer extends WindowContainer implements ActionListener 
 
     public ArrayList<StudentData> list = new ArrayList<>(java.util.List.of(
             new StudentData(152745,"Carl Francis Pacatang", 18,"Tagum City", Programs.BSCS,false),
-            new StudentData(152710,"Kristian Vinz Lizardo", 19,"Tagum City", Programs.BSCS,false)
-            new StudentData(152710,"Ricky II Guiloreza", 23,"Tagum City", Programs.BSCS,false)
-            new StudentData(152710,"Andre Quima", 18,"Tagum City", Programs.BSCS,false)
+            new StudentData(152710,"Kristian Vinz Lizardo", 19,"Tagum City", Programs.BSCS,false),
+            new StudentData(152710,"Ricky II Guiloreza", 23,"Tagum City", Programs.BSCS,false),
+            new StudentData(152710,"Andre Quima", 18,"Tagum City", Programs.BSCS,false),
             new StudentData(152710,"Jame Cris Yuson", 18,"Tagum City", Programs.BSCS,false)
     ));
     StudentRecordTableModel model = new StudentRecordTableModel(list);
