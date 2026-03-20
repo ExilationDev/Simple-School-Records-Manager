@@ -79,7 +79,7 @@ Shows the existing container as a separate window or dialog.
 | `title` | String | The title of the dialog. |
 | `width` | int | The width of the dialog. |
 | `height` | int | The height of the dialog. |
-| `modal` | boolean | The modality of the dialog (whether it can receive inputs from other windows or not). |
+| `modal` | boolean | The modality of the dialog (whether it can allow inputs from other windows or not). |
 
 ##### `AppWindow.showContentPaneAsDialog(c, title, width, height, modal, wl)`
 Shows the existing container as a separate window or dialog, with WindowListener.
@@ -89,7 +89,7 @@ Shows the existing container as a separate window or dialog, with WindowListener
 | `title` | String | The title of the dialog. |
 | `width` | int | The width of the dialog. |
 | `height` | int | The height of the dialog. |
-| `modal` | boolean | The modality of the dialog (whether it can receive inputs from other windows or not). |
+| `modal` | boolean | The modality of the dialog (whether it can allow inputs from other windows or not). |
 | `wl` | WindowListener | The WindowListener. |
 
 ##### `AppWindow.debugPrintln(message, type)`
