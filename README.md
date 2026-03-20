@@ -1,5 +1,5 @@
 ## Simple School Records Manager
-An open-source school records manager with a fully dedicated database system.\
+An open-source school records manager with a simple database system design (TableModel).\
 Made purely using Java Swing.
 
 > [!NOTE]
