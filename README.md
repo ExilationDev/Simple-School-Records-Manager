@@ -11,7 +11,7 @@ Made purely using Java Swing.
 If you want to visualize how this application and its database system works, a flowchart of it is available.
 
 ## Documentation
-### `appproject.lib.AppWindow`
+### • `appproject.lib.AppWindow`
 ##### `AppWindow(title, x, y, width, height, resizable)`
 Sets up an application window.
 | Parameters | Data Type | Description |
@@ -71,6 +71,16 @@ Returns `WindowContainer`.
 | :--- | :--- | :--- |
 | `c` | WindowContainer | Selected container to be shown. |
 
+##### `AppWindow.showContent(String name)`
+Shows the existing preloaded container in AppWindow's CardLayout `mainContainer`. Will disable previous pane.
+| Parameters | Data Type | Description |
+| :--- | :--- | :--- |
+| `name` | String | Selected preloaded container with name to be shown. |
+
+##### `AppWindow.getCurrentContent()`
+Gets the current content from AppWindow's CardLayout `mainContainer`.\
+Returns `JPanel` if it gets the content, `null` if it doesn't.
+
 ##### `AppWindow.showContentPaneAsDialog(c, title, width, height, modal)`
 Shows the existing container as a separate window or dialog.
 | Parameters | Data Type | Description |
@@ -100,7 +110,39 @@ Prints out a detailed console print for debugging. It includes a timestamp and d
 | `message` | Object | The message. |
 | `type` | String | The type of the message print. |
 
-### `appproject.lib.WindowContainer`
+### • `appproject.lib.WindowContainer`
 ##### `WindowContainer()`
 Sets up the WindowContainer. Also known as the content for AppWindow.\
 Custom containers inheriting WindowContainer should use `super()` as the first statement in their constructors.\
+
+### • `appproject.lib.components.ColorTheme`
+| Variables | Data Type | Default Value |
+| :--- | :--- | :--- |
+| `static DEFAULT_COLOR` | Color | new Color(255, 255, 255) |
+| `static NAVPANEL_DEFAULT` | Color | new Color(37, 46, 54) |
+| `static NAVPANEL_FONT_COLOR` | Color | new Color(255, 255, 255) |
+| `static NAVBUTTON_DEFAULT` | Color | new Color(37, 46, 54) |
+| `static NAVBUTTON_HOVER_ENTER` | Color | new Color(72, 95, 115) |
+| `static NAVBUTTON_PRESSED` | Color | new Color(143, 176, 204) |
+| `static NAVBUTTON_DISABLED` | Color | new Color(25, 30, 36) |
+| `static CONTENT_DEFAULT` | Color | new Color(255, 255, 255) |
+| `static CONTENT_FONT_COLOR` | Color | new Color(0, 0, 0) |
+
+##### `ColorTheme.changeTheme(theme)`
+***Static function.***\
+Changes GUI theme to a preset theme.
+| Parameters | Data Type | Description |
+| :--- | :--- | :--- |
+| `theme` | ColorTheme.Themes | The preset theme. |
+
+##### `ColorTheme.refreshColors()`
+***Static function.***\
+Repaints and revalidates the GUI.
+
+### • `appproject.lib.components.FontManager`
+##### `FontManager.changeFont(component)`
+***Static function.***\
+Recursively changes font of selected component.
+| Parameters | Data Type | Description |
+| :--- | :--- | :--- |
+| `component` | Component | The component set to change its font and its children's fonts. |
