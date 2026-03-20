@@ -118,7 +118,7 @@ public class UpdateContainer extends WindowContainer implements ActionListener {
         }
 
         StudentData data = new StudentData((int)id_field.getValue(), fullname_field.getText(), (int)age_field.getValue(), address_field.getText(), (Programs)program_dropdown.getSelectedItem(), scholar_checkbox.isSelected());
-        ((StudentRecordTableModel)table.getModel()).addRecord(data);
+        ((StudentRecordTableModel)table.getModel()).setRecord(data, table.getSelectedRow());
         SwingUtilities.getWindowAncestor(this).dispose();
     }
 }

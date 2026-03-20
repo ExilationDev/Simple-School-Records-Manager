@@ -22,7 +22,7 @@ public class FontManager {
         return null;
     }
 
-    public static FontManager instance = new FontManager();
+    static FontManager instance = new FontManager();
 
     public static void changeFont(Component component) {
         component.setFont(instance.customFont(new File("resources/fonts/OpenSans-Regular.ttf"), 15f));
